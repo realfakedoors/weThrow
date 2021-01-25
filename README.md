@@ -1,24 +1,8 @@
-# README
+# weThrow
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A full-stack app for disc golfers to track scores, find courses, share thoughts and join events & leagues.  
 
-Things you may want to cover:
+Demonstrates the ability to bring together full-stack skills and build a complex project with a lot of functionality.  
+Part of The Odin Project: https://www.theodinproject.com/courses/javascript/lessons/final-project-116ff273-1e55-4055-bd7f-146c17d0ec9c  
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Uses Rails 6.1, React, PostgreSQL and Webpacker.  
