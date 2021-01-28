@@ -4,7 +4,9 @@ class HelloWorld extends React.Component {
   render () {
     return (
       <React.Fragment>
-        Greeting: {this.props.greeting}
+        <button className="button">
+          Greeting: {this.props.greeting}
+        </button>
       </React.Fragment>
     );
   }
