@@ -1,0 +1,34 @@
+body {
+  min-height: 100vh;
+  background-color: #506255;
+}
+
+#app-container {
+  margin: 0 auto;
+}
+
+.site-nav {
+  padding: 6px 0;
+  .button,
+  .navbar-item {
+    margin: auto 6px;
+  }
+}
+
+#app-body {
+  margin: 75px 120px;
+}
+
+.signup-form-container,
+.auth-prompt {
+  width: 400px;
+  margin: 0 auto;
+
+  text-align: center;
+  .label {
+    text-align: left;
+  }
+  .button {
+    margin: 12px 0 20px;
+  }
+}

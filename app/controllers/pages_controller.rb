@@ -1,6 +1,4 @@
 class PagesController < ApplicationController
-  # before_action :authenticate_user!
-  
-  def hello
+  def app
   end
 end

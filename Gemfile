@@ -30,6 +30,8 @@ end
 group :development do
   gem 'listen', '~> 3.3'
   gem 'spring'
+  # Open outgoing emails in the browser.
+  gem 'letter_opener'
 end
 
 group :test do

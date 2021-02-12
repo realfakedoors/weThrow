@@ -7,7 +7,7 @@ class ApplicationResponder < ActionController::Responder
   def json_resource_errors
     {
       success: false,
-      errors: resource.errors
+      errors: resource.errors.full_messages
     }
   end
 end
