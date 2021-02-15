@@ -6,6 +6,26 @@ const SiteNav = () => {
   let history = useHistory();
   const auth = useAuth();
 
+  let navSiteLinks = (
+    <Fragment>
+      <Link to="#" className="navbar-item">
+        Courses
+      </Link>
+      <Link to="#" className="navbar-item">
+        Tournaments
+      </Link>
+      <Link to="#" className="navbar-item">
+        Leagues
+      </Link>
+      <Link to="#" className="navbar-item">
+        Discs
+      </Link>
+      <Link to="#" className="new-round-button button is-primary navbar-item">
+        Start a new round
+      </Link>
+    </Fragment>
+  );
+
   let navRight;
   if (auth.userLoggedIn) {
     navRight = (
@@ -14,7 +34,7 @@ const SiteNav = () => {
           Dashboard
         </Link>
         <button
-          className="button is-danger signout-button"
+          className="signout-button button is-danger"
           onClick={() => {
             auth.signout(() => history.push("/sign_in"));
           }}
@@ -37,20 +57,26 @@ const SiteNav = () => {
   }
 
   return (
-    <nav className="navbar site-nav is-dark" role="navigation" aria-label="main navigation">
-      {/*<div className="navbar-brand">
-      <Link to="/">
-        weThrow brand/logo
-      </Link>
-    </div>*/}
-
+    <nav
+      className="navbar site-nav is-dark"
+      role="navigation"
+      aria-label="main navigation"
+    >
+      <div className="navbar-brand">
+        <Link to="/">
+          <img
+            className="navbar-logo"
+            src="weThrowLogo.png"
+            alt="An app for disc golfers."
+          />
+          <p className="navbar-company-name">weThrow</p>
+        </Link>
+      </div>
       <div className="navbar-menu">
-        <div className="navbar-start">
-          {/*<Link to="/sign_up" className="navbar-item">
-            Sign Up
-          </Link>*/}
+        <div className="navbar-end">
+          {navSiteLinks}
+          {navRight}
         </div>
-        <div className="navbar-end">{navRight}</div>
       </div>
     </nav>
   );

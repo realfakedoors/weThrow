@@ -1,6 +1,6 @@
 body {
   min-height: 100vh;
-  background-color: #506255;
+  background-color: #495049;
 }
 
 #app-container {
@@ -9,14 +9,67 @@ body {
 
 .site-nav {
   padding: 6px 0;
+  .navbar-brand {
+    position: relative;
+
+    min-height: 0px;
+    height: 44px;
+    margin-left: 6px;
+
+    * {
+      height: 44px;
+    }
+    .navbar-logo {
+      width: 44px;
+    }
+    .navbar-company-name {
+      display: inline-block;
+      position: relative;
+
+      top: -7px;
+      padding-left: 8px;
+
+      font-size: 28px;
+      font-weight: 600;
+      text-decoration: none;
+      color: #ddd;
+    }
+  }
   .button,
   .navbar-item {
     margin: auto 6px;
   }
+  .new-round-button {
+    position: absolute;
+    
+    top: 62px;
+    right: 0;
+  }
+}
+
+.home-page {
+  .sitewide-searchbar {
+    max-width: 66%;
+    min-width: 45%;
+
+    margin: 350px auto;
+    .input {
+      height: 54px;
+      font-size: 24px;
+    }
+  }
 }
 
 #app-body {
-  margin: 75px 120px;
+  min-height: 100vh;
+
+  padding: 75px;
+}
+
+.navbar.footer-nav {
+  justify-content: center;
+  
+  background-color: transparent;
 }
 
 .signup-form-container,
@@ -30,5 +83,14 @@ body {
   }
   .button {
     margin: 12px 0 20px;
+  }
+}
+
+.company-page {
+  max-width: 800px;
+  margin: 25px auto;
+  
+  .contact-submit-button {
+    margin-top: 6px;
   }
 }
