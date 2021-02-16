@@ -33,6 +33,7 @@ function useProvideAuth() {
       try {
         const decoded = jwt_decode(userToken);
         setUserId(decoded.sub);
+        setAdminStatus(decoded.admin);
       } catch (error) {
         console.log(error.message);
       }
@@ -55,9 +56,6 @@ function useProvideAuth() {
         const authToken = response.headers.authorization;
         localStorage.setItem("weThrowAuthToken", authToken);
         setUserToken(authToken);
-        if (response.data.admin) {
-          setAdminStatus(true);
-        }
       });
   };
 

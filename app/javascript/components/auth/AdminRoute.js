@@ -5,6 +5,7 @@ import { useAuth } from "../../hooks/use-auth";
 
 const AdminRoute = ({ children, ...rest }) => {
   let auth = useAuth();
+
   return (
     <Route
       {...rest}

@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, NavLink, useHistory } from "react-router-dom";
 import { useAuth } from "../../hooks/use-auth";
 
 const SiteNav = () => {
@@ -8,19 +8,19 @@ const SiteNav = () => {
 
   let navSiteLinks = (
     <Fragment>
-      <Link to="#" className="navbar-item">
+      <NavLink to="#" className="navbar-item">
         Courses
-      </Link>
-      <Link to="#" className="navbar-item">
+      </NavLink>
+      <NavLink to="#" className="navbar-item">
         Tournaments
-      </Link>
-      <Link to="#" className="navbar-item">
+      </NavLink>
+      <NavLink to="#" className="navbar-item">
         Leagues
-      </Link>
-      <Link to="#" className="navbar-item">
+      </NavLink>
+      <NavLink to="#" className="navbar-item">
         Discs
-      </Link>
-      <Link to="#" className="new-round-button button is-primary navbar-item">
+      </NavLink>
+      <Link to="#" className="new-scorecard-button button is-primary">
         Start a new round
       </Link>
     </Fragment>
@@ -30,7 +30,7 @@ const SiteNav = () => {
   if (auth.userLoggedIn) {
     navRight = (
       <Fragment>
-        <Link to="/dashboard" className="navbar-item">
+        <Link to="/dashboard" className="button is-warning">
           Dashboard
         </Link>
         <button
@@ -60,7 +60,7 @@ const SiteNav = () => {
   if (auth.adminStatus) {
     adminButton = (
       <Fragment>
-        <Link to="/admin" className="navbar-item button is-danger">
+        <Link to="/admin" className="button is-success">
           Admin
         </Link>
       </Fragment>
