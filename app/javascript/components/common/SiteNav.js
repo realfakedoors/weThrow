@@ -56,6 +56,17 @@ const SiteNav = () => {
     );
   }
 
+  let adminButton;
+  if (auth.adminStatus) {
+    adminButton = (
+      <Fragment>
+        <Link to="/admin" className="navbar-item button is-danger">
+          Admin
+        </Link>
+      </Fragment>
+    );
+  }
+
   return (
     <nav
       className="navbar site-nav is-dark"
@@ -75,6 +86,7 @@ const SiteNav = () => {
       <div className="navbar-menu">
         <div className="navbar-end">
           {navSiteLinks}
+          {adminButton}
           {navRight}
         </div>
       </div>

@@ -1,10 +1,12 @@
 import React from "react";
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
-import { ProvideAuth, useAuth } from "../hooks/use-auth";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { ProvideAuth } from "../hooks/use-auth";
 
 import SiteNav from "./common/SiteNav";
 import SiteFooter from "./common/SiteFooter";
 
+import PrivateRoute from "./auth/PrivateRoute";
+import AdminRoute from "./auth/AdminRoute";
 import SignUp from "./auth/SignUp";
 import SignIn from "./auth/SignIn";
 import ResetPassword from "./auth/ResetPassword";
@@ -16,31 +18,12 @@ import Contact from "./company_pages/Contact";
 import Jobs from "./company_pages/Jobs";
 import Help from "./company_pages/Help";
 
+import AdminMessages from "./direct_messages/AdminMessages";
+
 import HomePage from "./HomePage";
 import Dashboard from "./Dashboard";
 
 const App = () => {
-  function PrivateRoute({ children, ...rest }) {
-    let auth = useAuth();
-    return (
-      <Route
-        {...rest}
-        render={({ location }) =>
-          auth.userLoggedIn || localStorage.getItem("weThrowAuthToken") ? (
-            children
-          ) : (
-            <Redirect
-              to={{
-                pathname: "/sign_in",
-                state: { from: location },
-              }}
-            />
-          )
-        }
-      />
-    );
-  }
-
   return (
     <ProvideAuth>
       <BrowserRouter>
@@ -81,6 +64,9 @@ const App = () => {
               <PrivateRoute path={"/dashboard"}>
                 <Dashboard />
               </PrivateRoute>
+              <AdminRoute path={"/admin"}>
+                <AdminMessages />
+              </AdminRoute>
             </Switch>
           </div>
           <SiteFooter />

@@ -19,7 +19,7 @@ function useProvideAuth() {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [userToken, setUserToken] = useState(null);
   const [userId, setUserId] = useState(null);
-  const [userType, setUserType] = useState(null);
+  const [adminStatus, setAdminStatus] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem("weThrowAuthToken")) {
@@ -33,14 +33,13 @@ function useProvideAuth() {
       try {
         const decoded = jwt_decode(userToken);
         setUserId(decoded.sub);
-        setUserType(decoded.scp);
       } catch (error) {
         console.log(error.message);
       }
     } else {
       setUserLoggedIn(false);
       setUserId(null);
-      setUserType(null);
+      setAdminStatus(false);
     }
   }, [userToken]);
 
@@ -56,6 +55,9 @@ function useProvideAuth() {
         const authToken = response.headers.authorization;
         localStorage.setItem("weThrowAuthToken", authToken);
         setUserToken(authToken);
+        if (response.data.admin) {
+          setAdminStatus(true);
+        }
       });
   };
 
@@ -78,6 +80,7 @@ function useProvideAuth() {
       .then(() => {
         localStorage.removeItem("weThrowAuthToken");
         setUserToken(null);
+        setAdminStatus(false);
       })
       .catch((err) => {
         console.log(err);
@@ -106,7 +109,7 @@ function useProvideAuth() {
     userLoggedIn,
     userToken,
     userId,
-    userType,
+    adminStatus,
     signin,
     signup,
     signout,
