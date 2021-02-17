@@ -7,14 +7,14 @@ development:
   <<: *default
   database: weThrow_development
   username: weThrow
-  password: <%= ENV['DB_PASS'] %>
+  password: <%= ENV['DEV_DB_PASS'] %>
 test:
   <<: *default
   database: weThrow_test
   username: weThrow
-  password: <%= ENV['DB_PASS'] %>
+  password: <%= ENV['TEST_DB_PASS'] %>
 production:
   <<: *default
   database: weThrow_production
   username: weThrow
-  password: <%= ENV['WETHROW_DATABASE_PASSWORD'] %>
+  password: <%= ENV['PROD_DB_PASS'] %>
