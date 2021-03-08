@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext, createContext } from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 
-const authContext = createContext();
+export const authContext = createContext();
 
 // Wraps <App /> and makes an auth object available to any child component that calls useAuth().
 export const ProvideAuth = ({ children }) => {
@@ -15,10 +15,11 @@ export const useAuth = () => {
   return useContext(authContext);
 };
 
-function useProvideAuth() {
+export const useProvideAuth = () => {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [userToken, setUserToken] = useState(null);
   const [userId, setUserId] = useState(null);
+  const [userName, setUserName] = useState("");
   const [adminStatus, setAdminStatus] = useState(false);
 
   useEffect(() => {
@@ -33,9 +34,10 @@ function useProvideAuth() {
       try {
         const decoded = jwt_decode(userToken);
         setUserId(decoded.sub);
+        setUserName(decoded.name);
         setAdminStatus(decoded.admin);
       } catch (error) {
-        console.log(error.message);
+        console.error(error.message);
       }
     } else {
       setUserLoggedIn(false);
@@ -59,9 +61,10 @@ function useProvideAuth() {
       });
   };
 
-  const signup = (email, password) => {
+  const signup = (name, email, password) => {
     return axios.post("users", {
       user: {
+        name: name,
         email: email,
         password: password,
       },
@@ -81,7 +84,7 @@ function useProvideAuth() {
         setAdminStatus(false);
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
   };
 
@@ -107,6 +110,7 @@ function useProvideAuth() {
     userLoggedIn,
     userToken,
     userId,
+    userName,
     adminStatus,
     signin,
     signup,

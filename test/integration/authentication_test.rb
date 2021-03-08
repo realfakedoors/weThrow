@@ -1,20 +1,18 @@
 require 'test_helper'
 require 'devise/jwt/test_helpers'
 
-class AuthenticationTest < ActionDispatch::IntegrationTest
-  setup do
-    @user = User.create!(email: "rocko1@o-town.com", password: "spunky")
-  end
-  
+class AuthenticationTest < ActionDispatch::IntegrationTest  
   test "JWT Authentication with Devise" do
+    @user = User.create!(name: "spunky", email: "spunky@o-town.com", password: "iloverocko")
     assert @user.valid?
+    
     # Send a confirmation email to a user when they sign up.
     confirmation = ActionMailer::Base.deliveries.last
     assert_equal confirmation.to.first, @user.email
     
     # A confirmed user can sign in successfully.
     @user.confirm
-    @params = { user: {  email: @user.email, password: @user.password }}
+    @params = { user: { name: @user.name, email: @user.email, password: @user.password }}
     post '/users/sign_in', params: @params
     assert_response :success
     
@@ -22,7 +20,7 @@ class AuthenticationTest < ActionDispatch::IntegrationTest
     assert response.headers['Authorization'].present?
     auth_token = response.headers['Authorization']
     get '/dashboard',
-      headers: {'Authorization' => auth_token, 'Content-Type' => 'application/json'}
+      headers: {'Authorization' => auth_token}
     assert_response :success
     
     # Signing out returns a 'No Content' response.
@@ -41,7 +39,7 @@ class AuthenticationTest < ActionDispatch::IntegrationTest
     assert_response :success
     
     # An unconfirmed user can't sign in.
-    unconfirmed = User.create!(email: "heffer@o-town.com", password: "seamonkeys")
+    unconfirmed = User.create!(name: "heffer", email: "heffer@o-town.com", password: "seamonkeys")
     unconfirmed_params = { user: {  email: unconfirmed.email, password: unconfirmed.password }}
     post '/users/sign_in', params: unconfirmed_params
     assert_response 401

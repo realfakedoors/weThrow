@@ -1,0 +1,7 @@
+dr_hutchison:
+  email: DrHutchison@o-town.com
+  encrypted_password: hooksarecool
+  admin: true
+rocko:
+  email: rocko1@o-town.com
+  encrypted_password: spunky

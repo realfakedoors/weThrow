@@ -1,10 +1,59 @@
-import React, { Fragment } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { Link, NavLink, useHistory } from "react-router-dom";
 import { useAuth } from "../../hooks/use-auth";
+
+import axios from "axios";
 
 const SiteNav = () => {
   let history = useHistory();
   const auth = useAuth();
+
+  const [isLoading, setLoading] = useState(true);
+  const [adminUnreadCount, setAdminUnreadCount] = useState(0);
+  const [unreadCount, setUnreadCount] = useState(0);
+
+  useEffect(() => {
+    if (auth.userLoggedIn){
+      getUnreadMessageCount();
+    }
+    if (auth.adminStatus){
+      getUnreadAdminMessageCount();
+    }
+    setLoading(false);
+  }, [auth.userLoggedIn]);
+  
+  function getUnreadMessageCount() {
+    axios
+      .get("/direct_messages", {
+        headers: {
+          Authorization: auth.userToken,
+        },
+      })
+      .then((res) => {
+        if (res.data){
+          setUnreadCount(res.data.unread_count);
+        }
+      })
+      .catch((err) => console.error(err));
+  }
+
+  function getUnreadAdminMessageCount() {
+    axios
+      .get("/direct_messages", {
+        params: {
+          inbox: "admin",
+        },
+        headers: {
+          Authorization: auth.userToken,
+        },
+      })
+      .then((res) => {
+        if (res.data){
+          setAdminUnreadCount(res.data.unread_count);
+        }
+      })
+      .catch((err) => console.error(err));
+  }
 
   let navSiteLinks = (
     <Fragment>
@@ -20,18 +69,24 @@ const SiteNav = () => {
       <NavLink to="#" className="navbar-item">
         Discs
       </NavLink>
-      <Link to="#" className="new-scorecard-button button is-primary">
+      <Link to="#" className="new-scorecard-button button is-success">
         Start a new round
       </Link>
     </Fragment>
   );
 
   let navRight;
-  if (auth.userLoggedIn) {
+  if (auth.userLoggedIn && !isLoading) {
     navRight = (
       <Fragment>
+        <Link to="/messages" className="button is-link">
+          Inbox
+          <img src="mail.svg" className="nav-mail-icon" />
+          <strong>{`(${unreadCount})`}</strong>
+        </Link>
         <Link to="/dashboard" className="button is-warning">
-          Dashboard
+          <img src="default_user.svg" className="nav-user-icon" />
+          {auth.userName}
         </Link>
         <button
           className="signout-button button is-danger"
@@ -57,11 +112,13 @@ const SiteNav = () => {
   }
 
   let adminButton;
-  if (auth.adminStatus) {
+  if (auth.adminStatus && !isLoading) {
     adminButton = (
       <Fragment>
-        <Link to="/admin" className="button is-success">
+        <Link to="/admin" className="button is-info">
           Admin
+          <img src="mail.svg" className="nav-mail-icon" />
+          <strong>{`(${adminUnreadCount})`}</strong>
         </Link>
       </Fragment>
     );

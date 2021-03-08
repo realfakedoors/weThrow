@@ -19,6 +19,7 @@ import Jobs from "./company_pages/Jobs";
 import Help from "./company_pages/Help";
 
 import AdminMessages from "./direct_messages/AdminMessages";
+import UserMessages from "./direct_messages/UserMessages";
 
 import HomePage from "./HomePage";
 import Dashboard from "./Dashboard";
@@ -63,6 +64,9 @@ const App = () => {
               </Route>
               <PrivateRoute path={"/dashboard"}>
                 <Dashboard />
+              </PrivateRoute>
+              <PrivateRoute path={"/messages"}>
+                <UserMessages />
               </PrivateRoute>
               <AdminRoute path={"/admin"}>
                 <AdminMessages />

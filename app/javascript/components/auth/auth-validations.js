@@ -2,6 +2,10 @@ export const authValidations = () => {
   const emailIsPresent = (email) => {
     return email !== "" ? true : false;
   };
+  
+  const nameIsPresent = (name) => {
+    return name !== "" ? true : false;
+  };
 
   const passwordIsPresent = (password) => {
     return password !== "" ? true : false;
@@ -24,6 +28,7 @@ export const authValidations = () => {
 
   return {
     emailIsPresent,
+    nameIsPresent,
     passwordIsPresent,
     emailFormatIsCorrect,
     passwordSameAsConfirmation,

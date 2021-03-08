@@ -6,7 +6,7 @@ import DirectMessages from "./DirectMessages";
 
 import axios from "axios";
 
-const AdminMessages = () => {
+const UserMessages = () => {
   const auth = useAuth();
 
   const [isLoading, setLoading] = useState(true);
@@ -17,9 +17,6 @@ const AdminMessages = () => {
     if (auth.userLoggedIn) {
       axios
         .get("/direct_messages", {
-          params: {
-            inbox: "admin",
-          },
           headers: {
             Authorization: auth.userToken,
           },
@@ -43,7 +40,7 @@ const AdminMessages = () => {
       <DirectMessages
         messages={directMessages}
         partners={partners}
-        msgSectionTitle={"Admin Messages"}
+        msgSectionTitle={"Messages"}
       />
     );
   }
@@ -51,4 +48,4 @@ const AdminMessages = () => {
   return <div className={"box"}>{displayMessages}</div>;
 };
 
-export default AdminMessages;
+export default UserMessages;

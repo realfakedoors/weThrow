@@ -32,11 +32,15 @@ group :development do
   gem 'spring'
   # Open outgoing emails in the browser.
   gem 'letter_opener'
+  # Auto-run tests.
+  gem 'guard'
+  gem 'guard-minitest'
 end
 
 group :test do
   gem 'capybara'
   gem 'minitest'
+  gem 'minitest-reporters'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

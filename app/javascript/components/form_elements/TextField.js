@@ -2,10 +2,16 @@ import React from "react";
 
 const TextField = ({ label, inputId, inputType, autoFocus, testId }) => {
   return (
-    <div className={"field"}>
+    <div className={"field text-field"}>
       <label className={"label"}>{label}</label>
       <div className={"control"}>
-        <input id={inputId} className={"input"} type={inputType} autoFocus={autoFocus} data-testid={testId} />
+        <input
+          id={inputId}
+          className={"input"}
+          type={inputType}
+          autoFocus={autoFocus}
+          data-testid={testId}
+        />
       </div>
     </div>
   );

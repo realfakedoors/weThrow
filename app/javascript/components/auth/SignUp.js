@@ -16,9 +16,11 @@ const SignUp = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const validations = authValidations();
 
-  function validateSignUp(email, password, confirmation) {
+  function validateSignUp(name, email, password, confirmation) {
     if (!validations.emailIsPresent(email)) {
       setErrorMsg("Enter your email.");
+    } else if (!validations.nameIsPresent(name)) {
+      setErrorMsg("Enter your name.");
     } else if (!validations.emailFormatIsCorrect(email)) {
       setErrorMsg("That's not a valid email.");
     } else if (!validations.passwordIsPresent(password)) {
@@ -35,13 +37,14 @@ const SignUp = () => {
 
   async function submitSignUp(event) {
     event.preventDefault();
+    const name = document.getElementById("name").value;
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
     const confirmation = document.getElementById("confirmation").value;
 
-    if (validateSignUp(email, password, confirmation)) {
+    if (validateSignUp(name, email, password, confirmation)) {
       auth
-        .signup(email, password)
+        .signup(name, email, password)
         .then((response) => {
           if (response && response.status === 201) {
             setEmailSent(true);
@@ -60,15 +63,21 @@ const SignUp = () => {
       <div className={"box signup-form-container"}>
         <h1 className={"title is-1"}>Join Us</h1>
         <h2 className={"subtitle is-4"}>
-          Enter your email and password to create an account!
+          Enter your name, email and password to create an account!
         </h2>
         <form className={"signup-form"}>
+          <TextField
+            label={"name"}
+            inputId={"name"}
+            inputType={"text"}
+            testId={"signup-name"}
+            autoFocus={true}
+          />
           <TextField
             label={"email"}
             inputId={"email"}
             inputType={"text"}
             testId={"signup-email"}
-            autoFocus={true}
           />
           <TextField
             label={"password"}

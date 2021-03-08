@@ -8,7 +8,11 @@ const Contact = () => {
         <p>{"Let us know what you think of weThrow!"}</p>
         <form>
           <textarea className={"textarea is-primary"}></textarea>
-          <input type={"submit"} className={"button is-primary contact-submit-button"} value={"contact weThrow"}></input>
+          <input
+            type={"submit"}
+            className={"button is-primary contact-submit-button"}
+            value={"contact weThrow"}
+          ></input>
         </form>
       </div>
     </div>

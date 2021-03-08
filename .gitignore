@@ -32,3 +32,6 @@ yarn-debug.log*
 
 # Ignore Figaro's environment variables.
 /config/application.yml
+
+# Ignore Guardfile, as we're strictly using it for QoL in dev.
+Guardfile
