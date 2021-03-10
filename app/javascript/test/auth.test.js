@@ -18,6 +18,7 @@ const mock = new mockAdapter(axios);
 
 const mockUser = {
   name: "Rocko",
+  username: "rocko1",
   email: "rocko1@o-town.com",
   password: "spunky",
 };
@@ -29,8 +30,13 @@ test("A user can sign up for an account", async () => {
   fireEvent.click(screen.getByText("Sign Up"));
   await waitFor(() => {
     expect(
-      screen.getByText("Enter your name, email and password to create an account!")
+      screen.getByText(
+        "Enter your name, email and password to create an account!"
+      )
     );
+  });
+  fireEvent.change(screen.getByTestId(/signup-username/), {
+    target: { value: mockUser.username },
   });
   fireEvent.change(screen.getByTestId(/signup-name/), {
     target: { value: mockUser.name },
@@ -55,20 +61,54 @@ test("If a user tries to sign up with invalid info, they see an error message", 
   fireEvent.click(screen.getByText("Sign Up"));
   await waitFor(() => {
     expect(
-      screen.getByText("Enter your name, email and password to create an account!")
+      screen.getByText(
+        "Enter your name, email and password to create an account!"
+      )
     );
   });
-  
-  // Name field blank
+
+  // Username field blank
   fireEvent.change(screen.getByTestId(/signup-email/), {
     target: { value: "coolperson@hotmail.com" },
   });
-  fireEvent.change(screen.getByTestId(/signup-name/), {
+  fireEvent.change(screen.getByTestId(/signup-username/), {
     target: { value: "" },
   });
   fireEvent.click(screen.getByText("Sign me up!"));
   await waitFor(() => {
-    expect(screen.getByText("Enter your name."));
+    expect(screen.getByText("Enter a unique username!"));
+  });
+
+  // Username less than 6 characters
+  fireEvent.change(screen.getByTestId(/signup-username/), {
+    target: { value: "asd" },
+  });
+  fireEvent.click(screen.getByText("Sign me up!"));
+  await waitFor(() => {
+    expect(screen.getByText("Username should be between 6 and 20 characters!"));
+  });
+  // Username more than 20 characters
+  fireEvent.change(screen.getByTestId(/signup-username/), {
+    target: { value: "asd".repeat(20) },
+  });
+  fireEvent.click(screen.getByText("Sign me up!"));
+  await waitFor(() => {
+    expect(screen.getByText("Username should be between 6 and 20 characters!"));
+  });
+
+  fireEvent.change(screen.getByTestId(/signup-username/), {
+    target: { value: "CoolPerson" },
+  });
+
+  // Name more than 50 characters
+  fireEvent.change(screen.getByTestId(/signup-name/), {
+    target: { value: "asd".repeat(20) },
+  });
+  fireEvent.click(screen.getByText("Sign me up!"));
+  await waitFor(() => {
+    expect(
+      screen.getByText("Real life names can't be more than 50 characters!")
+    );
   });
   fireEvent.change(screen.getByTestId(/signup-name/), {
     target: { value: "Cool Person" },
@@ -240,7 +280,7 @@ test("A confirmed user can sign in", async () => {
   });
   mock
     .onPost("/users/sign_in")
-    .reply(201, {}, { headers: { Authorization: `fakeToken12345` }});
+    .reply(201, {}, { headers: { Authorization: `fakeToken12345` } });
   fireEvent.click(screen.getByText("Sign In"));
   await waitFor(() => {
     expect(screen.getByText("Dashboard"));

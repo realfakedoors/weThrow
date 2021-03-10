@@ -3,7 +3,7 @@ require 'devise/jwt/test_helpers'
 
 class AuthenticationTest < ActionDispatch::IntegrationTest  
   test "JWT Authentication with Devise" do
-    @user = User.create!(name: "spunky", email: "spunky@o-town.com", password: "iloverocko")
+    @user = User.create!(username: "spunky107", name: "Spunky", email: "spunky@o-town.com", password: "iloverocko")
     assert @user.valid?
     
     # Send a confirmation email to a user when they sign up.
@@ -12,7 +12,7 @@ class AuthenticationTest < ActionDispatch::IntegrationTest
     
     # A confirmed user can sign in successfully.
     @user.confirm
-    @params = { user: { name: @user.name, email: @user.email, password: @user.password }}
+    @params = { user: { email: @user.email, password: @user.password }}
     post '/users/sign_in', params: @params
     assert_response :success
     
@@ -39,9 +39,22 @@ class AuthenticationTest < ActionDispatch::IntegrationTest
     assert_response :success
     
     # An unconfirmed user can't sign in.
-    unconfirmed = User.create!(name: "heffer", email: "heffer@o-town.com", password: "seamonkeys")
+    unconfirmed = User.create!(username: "hefdude", name: "heffer", email: "heffer@o-town.com", password: "seamonkeys")
     unconfirmed_params = { user: {  email: unconfirmed.email, password: unconfirmed.password }}
     post '/users/sign_in', params: unconfirmed_params
     assert_response 401
+    
+    @unfortunate_user = User.new(username: "GhostXavier290", name: "Xavier Duncan", email: "ghostxavier@o-town.com", password: "neatoguys")
+    # Real life names can't be over 50 characters.
+    @unfortunate_user.name = "xD" * 51
+    assert_not @unfortunate_user.valid?
+    # Usernames must be between 6 and 20 characters.
+    @unfortunate_user.username = "xD" * 21
+    assert_not @unfortunate_user.valid?
+    @unfortunate_user.username = "xD"
+    assert_not @unfortunate_user.valid?
+    # Email must exist.
+    @unfortunate_user.email = ""
+    assert_not @unfortunate_user.valid?
   end
 end

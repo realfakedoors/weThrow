@@ -6,7 +6,9 @@ class User < ApplicationRecord
   has_many :direct_messages
   has_many :messages, through: :direct_messages
   
-  validates_presence_of :name
+  validates :username, presence: true, length: { in: 6..20 }, uniqueness: true
+  validates :name, length: { maximum: 50 }
+  validates :email, presence: true
   
   # Add a user's admin status and name to their encoded JWT.
   def jwt_payload

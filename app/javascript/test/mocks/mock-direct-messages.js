@@ -8,6 +8,7 @@ const userData = {
   exp: Date.now() + 10000000,
   sub: 1,
   name: "Rocko",
+  username: "rocko1",
   admin: false,
 };
 const adminData = {
@@ -15,6 +16,7 @@ const adminData = {
   exp: Date.now() + 10000000,
   sub: 2,
   name: "Dr. Hutchison",
+  username: "hutch1",
   admin: true,
 };
 const userJWT = sign(userData, secret);

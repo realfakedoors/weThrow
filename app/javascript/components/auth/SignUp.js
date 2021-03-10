@@ -16,19 +16,27 @@ const SignUp = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const validations = authValidations();
 
-  function validateSignUp(name, email, password, confirmation) {
+  function validateSignUp(username, name, email, password, confirmation) {
     if (!validations.emailIsPresent(email)) {
       setErrorMsg("Enter your email.");
-    } else if (!validations.nameIsPresent(name)) {
-      setErrorMsg("Enter your name.");
+    } else if (!validations.usernameIsPresent(username)) {
+      setErrorMsg("Enter a unique username!");
+    } else if (!validations.usernameIsCorrectLength(username)) {
+      setErrorMsg("Username should be between 6 and 20 characters!");
+    } else if (!validations.nameIsCorrectLength(name)) {
+      setErrorMsg("Real life names can't be more than 50 characters!");
     } else if (!validations.emailFormatIsCorrect(email)) {
       setErrorMsg("That's not a valid email.");
     } else if (!validations.passwordIsPresent(password)) {
       setErrorMsg("Enter your password.");
-    } else if (!validations.passwordSameAsConfirmation(password, confirmation)) {
-      setErrorMsg("Your password isn't the same as your confirmation. Try again!")
+    } else if (
+      !validations.passwordSameAsConfirmation(password, confirmation)
+    ) {
+      setErrorMsg(
+        "Your password isn't the same as your confirmation. Try again!"
+      );
     } else if (!validations.passwordIsCorrectLength(password)) {
-      setErrorMsg("Your password must be between 6 and 128 characters.")
+      setErrorMsg("Your password must be between 6 and 128 characters.");
     } else {
       return true;
     }
@@ -37,14 +45,15 @@ const SignUp = () => {
 
   async function submitSignUp(event) {
     event.preventDefault();
+    const username = document.getElementById("username").value;
     const name = document.getElementById("name").value;
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
     const confirmation = document.getElementById("confirmation").value;
 
-    if (validateSignUp(name, email, password, confirmation)) {
+    if (validateSignUp(username, name, email, password, confirmation)) {
       auth
-        .signup(name, email, password)
+        .signup(username, name, email, password)
         .then((response) => {
           if (response && response.status === 201) {
             setEmailSent(true);
@@ -67,12 +76,19 @@ const SignUp = () => {
         </h2>
         <form className={"signup-form"}>
           <TextField
-            label={"name"}
+            label={"unique username"}
+            inputId={"username"}
+            inputType={"text"}
+            testId={"signup-username"}
+            autoFocus={true}
+          />
+          <TextField
+            label={"real life name (optional)"}
             inputId={"name"}
             inputType={"text"}
             testId={"signup-name"}
-            autoFocus={true}
           />
+
           <TextField
             label={"email"}
             inputId={"email"}

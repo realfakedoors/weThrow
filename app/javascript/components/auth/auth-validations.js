@@ -2,9 +2,9 @@ export const authValidations = () => {
   const emailIsPresent = (email) => {
     return email !== "" ? true : false;
   };
-  
-  const nameIsPresent = (name) => {
-    return name !== "" ? true : false;
+
+  const usernameIsPresent = (username) => {
+    return username !== "" ? true : false;
   };
 
   const passwordIsPresent = (password) => {
@@ -26,12 +26,28 @@ export const authValidations = () => {
     return false;
   };
 
+  const usernameIsCorrectLength = (username) => {
+    if (username.length >= 6 && username.length <= 20) {
+      return true;
+    }
+    return false;
+  };
+
+  const nameIsCorrectLength = (name) => {
+    if (name.length <= 50) {
+      return true;
+    }
+    return false;
+  };
+
   return {
     emailIsPresent,
-    nameIsPresent,
+    usernameIsPresent,
     passwordIsPresent,
     emailFormatIsCorrect,
     passwordSameAsConfirmation,
     passwordIsCorrectLength,
+    usernameIsCorrectLength,
+    nameIsCorrectLength,
   };
 };

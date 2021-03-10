@@ -61,9 +61,10 @@ export const useProvideAuth = () => {
       });
   };
 
-  const signup = (name, email, password) => {
+  const signup = (username, name, email, password) => {
     return axios.post("users", {
       user: {
+        username: username,
         name: name,
         email: email,
         password: password,
@@ -119,4 +120,4 @@ export const useProvideAuth = () => {
     confirmPassword,
     changePassword,
   };
-}
+};
