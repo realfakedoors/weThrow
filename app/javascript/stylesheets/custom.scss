@@ -130,13 +130,13 @@ body {
   }
   .no-dm-selected {
     margin: 30px auto;
-    
+
     font-size: 53px;
     font-weight: 700;
     text-align: center;
     .select-arrow {
       margin: -22px auto 0;
-      
+
       height: 120px;
       width: 240px;
     }
@@ -147,6 +147,9 @@ body {
     width: 80%;
     padding: 0 160px;
     .show-direct-message {
+      .image {
+        margin: 0 auto;
+      }
       .discussion {
         display: flex;
         flex-direction: column;
@@ -174,7 +177,7 @@ body {
           .message-text {
             max-width: 400px;
             padding-bottom: 15px;
-            
+
             overflow-wrap: break-word;
             word-wrap: break-word;
             hyphens: auto;
@@ -203,7 +206,7 @@ body {
       justify-content: center;
       flex-wrap: wrap;
       background-color: white;
-      
+
       #error-window {
         width: 100%;
       }
@@ -255,6 +258,30 @@ body {
   .loading-screen-logo {
     height: 220px;
     width: 220px;
+  }
+}
+
+.upload-profile-picture {
+  max-height: 800px;
+  width: 250px;
+
+  padding-top: 18px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .profile-picture-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .file {
+      width: 130px;
+
+      margin-bottom: 10px;
+    }
+    .file-name {
+      font-size: 11px;
+    }
   }
 }
 

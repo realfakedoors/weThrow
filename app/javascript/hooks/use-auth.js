@@ -19,7 +19,8 @@ export const useProvideAuth = () => {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [userToken, setUserToken] = useState(null);
   const [userId, setUserId] = useState(null);
-  const [userName, setUserName] = useState("");
+  const [userName, setUserName] = useState(null);
+  const [userProfilePicture, setUserProfilePicture] = useState(null);
   const [adminStatus, setAdminStatus] = useState(false);
 
   useEffect(() => {
@@ -35,6 +36,7 @@ export const useProvideAuth = () => {
         const decoded = jwt_decode(userToken);
         setUserId(decoded.sub);
         setUserName(decoded.name);
+        setUserProfilePicture(decoded.profile_picture);
         setAdminStatus(decoded.admin);
       } catch (error) {
         console.error(error.message);
@@ -112,6 +114,8 @@ export const useProvideAuth = () => {
     userToken,
     userId,
     userName,
+    userProfilePicture,
+    setUserProfilePicture,
     adminStatus,
     signin,
     signup,

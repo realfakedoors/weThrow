@@ -9,7 +9,7 @@ const DirectMessageList = ({
   setSelectedPartner,
   partners,
 }) => {
-  function getPartnerName(dm) {
+  function getPartner(dm) {
     return partners[0][dm.id];
   }
 
@@ -32,7 +32,7 @@ const DirectMessageList = ({
         lastMessageContent={lastMessageContent()}
         lastMessageTime={lastMessageTime()}
         directMessage={directMessage}
-        partnerName={getPartnerName(directMessage)}
+        partner={getPartner(directMessage)}
         setSelectedDirectMessage={setSelectedDirectMessage}
         setSelectedPartner={setSelectedPartner}
       />

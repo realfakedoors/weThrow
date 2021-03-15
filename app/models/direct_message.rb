@@ -8,7 +8,7 @@ class DirectMessage < ApplicationRecord
   
   accepts_nested_attributes_for :messages
   
-  def other_user(user)
-    user == self.sender ? self.recipient : self.sender
+  def other_user(user_id)
+    user_id == self.sender_id ? self.recipient : self.sender
   end
 end

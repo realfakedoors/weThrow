@@ -5,9 +5,9 @@ const UserMessage = ({ content, author, timeDisplay }) => {
     <div className={"message box media"}>
       <div className={"media-left"}>
         <p className={"image is-48x48"}>
-          <img src={"default_user.svg"} />
+          <img src={author.profile_pic} />
         </p>
-        <small>{author}</small>
+        <small>{author.name}</small>
       </div>
       <div className={"media-content"}>
         <div className={"content"}>

@@ -49,7 +49,10 @@ const dmData = {
   unread_count: 0,
   partners: [
     {
-      "1": "Heffer",
+      "1": {
+        name: "Heffer",
+        profile_pic: "default_user.svg",
+      },
     },
   ],
 };

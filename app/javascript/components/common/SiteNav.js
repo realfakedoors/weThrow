@@ -13,15 +13,15 @@ const SiteNav = () => {
   const [unreadCount, setUnreadCount] = useState(0);
 
   useEffect(() => {
-    if (auth.userLoggedIn){
+    if (auth.userLoggedIn) {
       getUnreadMessageCount();
     }
-    if (auth.adminStatus){
+    if (auth.adminStatus) {
       getUnreadAdminMessageCount();
     }
     setLoading(false);
   }, [auth.userLoggedIn]);
-  
+
   function getUnreadMessageCount() {
     axios
       .get("/direct_messages", {
@@ -30,7 +30,7 @@ const SiteNav = () => {
         },
       })
       .then((res) => {
-        if (res.data){
+        if (res.data) {
           setUnreadCount(res.data.unread_count);
         }
       })
@@ -48,7 +48,7 @@ const SiteNav = () => {
         },
       })
       .then((res) => {
-        if (res.data){
+        if (res.data) {
           setAdminUnreadCount(res.data.unread_count);
         }
       })
@@ -85,7 +85,7 @@ const SiteNav = () => {
           <strong>{`(${unreadCount})`}</strong>
         </Link>
         <Link to="/dashboard" className="button is-warning">
-          <img src="default_user.svg" className="nav-user-icon" />
+          <img src={auth.userProfilePicture} className="nav-user-icon" />
           {auth.userName}
         </Link>
         <button

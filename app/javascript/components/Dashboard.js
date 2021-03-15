@@ -1,10 +1,12 @@
 import React from "react";
 
+import UploadProfilePicture from "./photos/UploadProfilePicture";
+
 const Dashboard = () => {
   return (
     <div className={"box"}>
-      <h1 className={"title is-1"}>Dashboard</h1>
-      <h2 className={"subtitle is-4"}>welcome to weThrow!</h2>
+      <h1 className={"title is-1 has-text-centered"}>Dashboard</h1>
+      <UploadProfilePicture />
     </div>
   );
 };

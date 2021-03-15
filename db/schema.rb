@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_10_061526) do
+ActiveRecord::Schema.define(version: 2021_03_12_041339) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,17 @@ ActiveRecord::Schema.define(version: 2021_03_10_061526) do
     t.index ["read_by"], name: "index_messages_on_read_by"
   end
 
+  create_table "photos", force: :cascade do |t|
+    t.string "url"
+    t.bigint "uploader_id", null: false
+    t.string "photo_attachable_type"
+    t.bigint "photo_attachable_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["photo_attachable_type", "photo_attachable_id"], name: "index_photos_on_photo_attachable"
+    t.index ["uploader_id"], name: "index_photos_on_uploader_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -68,4 +79,5 @@ ActiveRecord::Schema.define(version: 2021_03_10_061526) do
   add_foreign_key "direct_messages", "users", column: "recipient_id"
   add_foreign_key "direct_messages", "users", column: "sender_id"
   add_foreign_key "messages", "users", column: "author_id"
+  add_foreign_key "photos", "users", column: "uploader_id"
 end

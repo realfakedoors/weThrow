@@ -15,6 +15,8 @@ gem 'webpacker'
 gem 'react-rails'
 # Pair JSON Web Tokens with Devise for authentication.
 gem 'devise-jwt', '~> 0.7.0'
+# We'll be storing our bigger data files, like photos, externally on AWS's Simple Storage Service (S3).
+gem "aws-sdk-s3", "~> 1.91"
 # Secure environment variables.
 gem 'figaro'
 

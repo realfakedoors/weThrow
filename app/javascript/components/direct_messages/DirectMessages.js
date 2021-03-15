@@ -7,7 +7,7 @@ import NewMessageForm from "./NewMessageForm";
 const DirectMessages = ({ messages, partners, msgSectionTitle }) => {
   const [selectedDirectMessage, setSelectedDirectMessage] = useState(null);
   const [selectedMessages, setSelectedMessages] = useState([]);
-  const [selectedPartner, setSelectedPartner] = useState("");
+  const [selectedPartner, setSelectedPartner] = useState(null);
 
   useEffect(() => {
     if (selectedDirectMessage) {

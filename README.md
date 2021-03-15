@@ -13,5 +13,6 @@ The Final Project in [The Odin Project curriculum.](https://www.theodinproject.c
 - [PostgreSQL 13.1](https://www.postgresql.org/docs/13/index.html)
 - Authentication with [Devise and JSON Web Tokens.](https://github.com/waiting-for-dev/devise-jwt)
 - The [Bulma CSS Framework.](https://bulma.io/documentation/)
+- Photos uploaded directly to [AWS S3.](https://aws.amazon.com/s3/)
 
-Site logo, default profile, arrow and mail logos by [Freepik.](https://www.flaticon.com/authors/freepik)
+All icons by [Freepik.](https://www.flaticon.com/authors/freepik)

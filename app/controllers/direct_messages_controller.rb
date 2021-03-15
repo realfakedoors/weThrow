@@ -17,7 +17,11 @@ class DirectMessagesController < ApplicationController
       dm.messages.each do |msg| 
         @unread_count += 1 if msg.read_by.exclude?(current_user.id.to_s)
       end
-      @partners << {dm.id.to_s => dm.other_user(current_user).username}
+      other_user = dm.other_user(current_user.id)
+      @partners << {dm.id.to_s => {
+        name: other_user.username,
+        profile_pic: other_user.grab_profile_pic_url,
+      }}
     end
     
     render json: {direct_messages: @direct_messages.as_json(include: :messages), unread_count: @unread_count, partners: @partners}

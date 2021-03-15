@@ -8,7 +8,7 @@ const SelectDirectMessage = ({
   lastMessageContent,
   lastMessageTime,
   directMessage,
-  partnerName,
+  partner,
   setSelectedDirectMessage,
   setSelectedPartner,
 }) => {
@@ -38,7 +38,7 @@ const SelectDirectMessage = ({
     });
     setHighlighted(false);
     setSelectedDirectMessage(directMessage);
-    setSelectedPartner(partnerName);
+    setSelectedPartner(partner);
   }
 
   function markAsRead(message) {
@@ -64,12 +64,12 @@ const SelectDirectMessage = ({
     >
       <figure className={"media-left"}>
         <p className={"image is-64x64"}>
-          <img src={"default_user.svg"} />
+          <img src={partner.profile_pic} />
         </p>
       </figure>
       <div className={"media-content"}>
         <div className={"content"}>
-          <small>{partnerName}</small>
+          <small>{partner.name}</small>
           <strong>{directMessage.subject}</strong>
           {lastMessageContent}
           <small className={"has-text-right"}>{lastMessageTime}</small>
