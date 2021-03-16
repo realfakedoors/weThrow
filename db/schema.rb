@@ -10,10 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_12_041339) do
+ActiveRecord::Schema.define(version: 2021_03_16_075716) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "courses", force: :cascade do |t|
+    t.bigint "curator_id", null: false
+    t.string "name"
+    t.text "description"
+    t.text "current_conditions"
+    t.string "public_availability"
+    t.string "schedule"
+    t.bigint "lat"
+    t.bigint "lng"
+    t.string "address"
+    t.string "city"
+    t.string "state"
+    t.integer "zip"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["curator_id"], name: "index_courses_on_curator_id"
+  end
 
   create_table "direct_messages", force: :cascade do |t|
     t.string "category"
@@ -76,6 +94,7 @@ ActiveRecord::Schema.define(version: 2021_03_12_041339) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "courses", "users", column: "curator_id"
   add_foreign_key "direct_messages", "users", column: "recipient_id"
   add_foreign_key "direct_messages", "users", column: "sender_id"
   add_foreign_key "messages", "users", column: "author_id"

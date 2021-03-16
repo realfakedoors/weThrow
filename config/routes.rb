@@ -1,6 +1,7 @@
-Rails.application.routes.draw do  
+Rails.application.routes.draw do
   devise_for :users, defaults: { format: :json }
   
+  resources :courses, only: [:index, :show, :create, :update, :destroy]
   resources :direct_messages, only: [:index, :create, :destroy]
   resources :messages, only: [:update, :create, :destroy]
   resources :photos, only: [:new, :create, :destroy]
