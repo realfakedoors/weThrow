@@ -78,19 +78,19 @@ export const server = setupServer(
     }
   }),
 
-  rest.get("/direct_messages", (req, res, ctx) => {
+  rest.get("/api/direct_messages", (req, res, ctx) => {
     return res(ctx.json(dmData));
   }),
 
-  rest.post("/messages", (req, res, ctx) => {
+  rest.post("/api/messages", (req, res, ctx) => {
     return res(ctx.json(msgData));
   }),
 
-  rest.get("/messages/:id", (req, res, ctx) => {
+  rest.get("/api/messages/:id", (req, res, ctx) => {
     return res(ctx.json(msgData));
   }),
 
-  rest.patch("/messages/:id", (req, res, ctx) => {
+  rest.patch("/api/messages/:id", (req, res, ctx) => {
     return res(ctx.json({}));
   }),
 

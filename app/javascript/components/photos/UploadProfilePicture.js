@@ -48,7 +48,7 @@ const UploadProfilePicture = () => {
       let url;
 
       await axios
-        .get("/photos/new", {
+        .get("/api/photos/new", {
           headers: {
             Authorization: auth.userToken,
           },
@@ -76,7 +76,7 @@ const UploadProfilePicture = () => {
 
       await axios
         .post(
-          "/photos/",
+          "/api/photos/",
           {
             photo: {
               url: uploadUrl,
@@ -113,12 +113,11 @@ const UploadProfilePicture = () => {
             <input
               className="file-input"
               type="file"
-              name="resume"
               onChange={() => updateDisplay(event)}
             />
             <span className="file-cta">
               <span className="file-icon">
-                <img src={"upload.png"} />
+                <img src={"/upload.png"} />
               </span>
               <span className="file-label">{"Choose a Photo"}</span>
             </span>

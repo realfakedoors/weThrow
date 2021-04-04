@@ -1,4 +1,4 @@
-class DirectMessagesController < ApplicationController
+class Api::DirectMessagesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_direct_message, only: [:update, :destroy]
   before_action :correct_user, only: [:destroy]
@@ -17,7 +17,7 @@ class DirectMessagesController < ApplicationController
       dm.messages.each do |msg| 
         @unread_count += 1 if msg.read_by.exclude?(current_user.id.to_s)
       end
-      other_user = dm.other_user(current_user.id)
+      other_user = dm.other_user(current_user.id) || current_user
       @partners << {dm.id.to_s => {
         name: other_user.username,
         profile_pic: other_user.grab_profile_pic_url,

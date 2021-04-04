@@ -1,32 +1,38 @@
 {
-  "dependencies": {
-    "@babel/preset-react": "^7.12.10",
-    "@rails/webpacker": "5.2.1",
-    "axios": "^0.21.1",
-    "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
-    "bulma": "^0.9.2",
-    "jwt-decode": "^3.1.2",
-    "little-time": "^1.1.10",
-    "prop-types": "^15.7.2",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-paginate": "^7.1.0",
-    "react-router-dom": "^5.2.0",
-    "react_ujs": "^2.6.1"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.12.13",
-    "@babel/eslint-parser": "^7.12.13",
-    "@testing-library/react": "^11.2.5",
-    "axios-mock-adapter": "^1.19.0",
-    "eslint": "^7.19.0",
-    "eslint-plugin-react": "^7.22.0",
-    "jest": "^26.6.3",
-    "jwt-encode": "^1.0.1",
-    "msw": "^0.27.0",
-    "webpack-dev-server": "^3.11.2"
-  },
-  "scripts": {
-    "test": "jest --watch"
-  }
+    "dependencies": {
+        "@babel/plugin-transform-runtime": "^7.13.10",
+        "@babel/preset-env": "^7.13.12",
+        "@babel/preset-react": "^7.12.10",
+        "@rails/webpacker": "5.2.1",
+        "axios": "^0.21.1",
+        "babel": "^6.23.0",
+        "babel-loader": "^8.2.2",
+        "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+        "bulma": "^0.9.2",
+        "dotenv": "^8.2.0",
+        "jwt-decode": "^3.1.2",
+        "little-time": "^1.1.10",
+        "prop-types": "^15.7.2",
+        "react": "^17.0.1",
+        "react-dom": "^17.0.1",
+        "react-google-maps": "^9.4.5",
+        "react-paginate": "^7.1.0",
+        "react-router-dom": "^5.2.0",
+        "react_ujs": "^2.6.1"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.12.13",
+        "@babel/eslint-parser": "^7.12.13",
+        "@testing-library/react": "^11.2.5",
+        "axios-mock-adapter": "^1.19.0",
+        "eslint": "^7.19.0",
+        "eslint-plugin-react": "^7.22.0",
+        "jest": "^26.6.3",
+        "jwt-encode": "^1.0.1",
+        "msw": "^0.27.0",
+        "webpack-dev-server": "^3.11.2"
+    },
+    "scripts": {
+        "test": "jest --watch"
+    }
 }

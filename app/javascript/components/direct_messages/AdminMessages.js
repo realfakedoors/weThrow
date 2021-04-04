@@ -16,7 +16,7 @@ const AdminMessages = () => {
   useEffect(() => {
     if (auth.userLoggedIn) {
       axios
-        .get("/direct_messages", {
+        .get("/api/direct_messages", {
           params: {
             inbox: "admin",
           },

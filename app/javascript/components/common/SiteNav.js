@@ -24,7 +24,7 @@ const SiteNav = () => {
 
   function getUnreadMessageCount() {
     axios
-      .get("/direct_messages", {
+      .get("/api/direct_messages", {
         headers: {
           Authorization: auth.userToken,
         },
@@ -39,7 +39,7 @@ const SiteNav = () => {
 
   function getUnreadAdminMessageCount() {
     axios
-      .get("/direct_messages", {
+      .get("/api/direct_messages", {
         params: {
           inbox: "admin",
         },
@@ -57,9 +57,6 @@ const SiteNav = () => {
 
   let navSiteLinks = (
     <Fragment>
-      <NavLink to="#" className="navbar-item">
-        Courses
-      </NavLink>
       <NavLink to="#" className="navbar-item">
         Tournaments
       </NavLink>
@@ -81,7 +78,7 @@ const SiteNav = () => {
       <Fragment>
         <Link to="/messages" className="button is-link">
           Inbox
-          <img src="mail.svg" className="nav-mail-icon" />
+          <img src="/mail.svg" className="nav-mail-icon" />
           <strong>{`(${unreadCount})`}</strong>
         </Link>
         <Link to="/dashboard" className="button is-warning">
@@ -117,7 +114,7 @@ const SiteNav = () => {
       <Fragment>
         <Link to="/admin" className="button is-info">
           Admin
-          <img src="mail.svg" className="nav-mail-icon" />
+          <img src="/mail.svg" className="nav-mail-icon" />
           <strong>{`(${adminUnreadCount})`}</strong>
         </Link>
       </Fragment>
@@ -134,7 +131,7 @@ const SiteNav = () => {
         <Link to="/">
           <img
             className="navbar-logo"
-            src="weThrowLogo.png"
+            src="/weThrowLogo.png"
             alt="An app for disc golfers."
           />
           <p className="navbar-company-name">weThrow</p>

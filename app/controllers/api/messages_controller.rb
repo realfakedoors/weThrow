@@ -1,4 +1,4 @@
-class MessagesController < ApplicationController
+class Api::MessagesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_message, only: [:update, :destroy]
   

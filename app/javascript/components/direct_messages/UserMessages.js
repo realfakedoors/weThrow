@@ -16,7 +16,7 @@ const UserMessages = () => {
   useEffect(() => {
     if (auth.userLoggedIn) {
       axios
-        .get("/direct_messages", {
+        .get("/api/direct_messages", {
           headers: {
             Authorization: auth.userToken,
           },

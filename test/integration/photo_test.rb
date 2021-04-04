@@ -14,7 +14,7 @@ class PhotoTest < ActionDispatch::IntegrationTest
   
   test "User profile pictures" do
     # We can get a brand new signed AWS S3 url to upload our photo to.
-    get '/photos/new'
+    get '/api/photos/new'
     assert_includes(response.body, "https://wethrow-photos.s3.us-west-1.amazonaws.com")
     assert_includes(response.body, "x-amz-signature")
     assert_includes(response.body, "x-amz-credential")
@@ -30,7 +30,7 @@ class PhotoTest < ActionDispatch::IntegrationTest
     }
     sign_in @user
     assert_difference 'Photo.count', 1 do
-      post '/photos', params: new_profile_pic_params
+      post '/api/photos', params: new_profile_pic_params
     end
     assert_equal(@user.grab_profile_pic_url, fake_url)
   end

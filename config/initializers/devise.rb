@@ -49,7 +49,7 @@ Devise.setup do |config|
   config.reconfirmable = true
 
   # Invalidates all the remember me tokens when the user signs out.
-  config.expire_all_remember_me_on_sign_out = true
+  config.expire_all_remember_me_on_sign_out = false
 
   # ==> Configuration for :validatable
   # Range for password length.

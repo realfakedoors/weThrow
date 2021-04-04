@@ -3,7 +3,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable, :jwt_authenticatable, jwt_revocation_strategy: JwtDenylist
          
-  has_one :profile_picture, class_name: "Photo", as: :photo_attachable
+  has_one :profile_picture, class_name: "Photo", as: :photo_attachable, dependent: :destroy
   
   has_many :courses
   has_many :direct_messages
@@ -20,6 +20,6 @@ class User < ApplicationRecord
   end
   
   def grab_profile_pic_url
-    self.profile_picture ? self.profile_picture.url : "default_user.svg"
+    self.profile_picture ? self.profile_picture.url : "/default_user.svg"
   end
 end

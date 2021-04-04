@@ -11,9 +11,7 @@ const DirectMessages = ({ messages, partners, msgSectionTitle }) => {
 
   useEffect(() => {
     if (selectedDirectMessage) {
-      setSelectedMessages(
-        selectedMessages.concat(selectedDirectMessage.messages)
-      );
+      setSelectedMessages(selectedDirectMessage.messages);
     }
   }, [selectedDirectMessage]);
 

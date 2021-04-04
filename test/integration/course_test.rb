@@ -2,6 +2,7 @@ require 'test_helper'
 
 class CourseTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
+  require_relative 'course_params.rb'
   
   setup do
     @user = users(:rocko)
@@ -12,74 +13,37 @@ class CourseTest < ActionDispatch::IntegrationTest
     @admin.confirm
     @jabroni.confirm
     
-    @adams_hollow = {
-      course: {
-        name: "Adams Hollow",
-        description: "Located in an open, dedicated park with a wide variety of terrain and challenge.",
-        current_conditions: "Covered in snow! Try again next week.",
-        public_availability: "public",
-        schedule: "year-round",
-        lat: 39.9308,
-        lng: -104.8700,
-        address: "Playground Parking Area, Campground Rd",
-        city: "Adams County",
-        state: "CO",
-        zip: 80211
-      }
-    }
+    @adams_hollow = CourseParams::ADAMS_HOLLOW
+    @birds_nest = CourseParams::BIRDS_NEST
+    @spooky_gulch = CourseParams::SPOOKY_GULCH
     
-    @birds_nest = {
-      course: {
-        name: "Bird's Nest Disc Golf Park",
-        description: "Lots of distance tests and open bomber shots.",
-        current_conditions: "Sunny and beautiful.",
-        public_availability: "public",
-        schedule: "year-round",
-        lat: 39.8162,
-        lng: -105.2023,
-        address: "West 64th Parkway",
-        city: "Arvada",
-        state: "CO",
-        zip: 80007
-      }
-    }
-    
-    @spooky_gulch = {
-      course: {
-        name: "Spooky Gulch Disc Golf Experience",
-        description: "Actually haunted. Play at your own risk.",
-        current_conditions: "Spookier than usual",
-        public_availability: "public",
-        schedule: "seasonal",
-        lat: 41.8162,
-        lng: -102.2023,
-        address: "Trapped In A Mine",
-        city: "Nowhere",
-        state: "CO",
-        zip: 81224
-      }
-    }
+    [@adams_hollow, @birds_nest, @spooky_gulch].each do |course|
+      course[:course][:photos_attributes].map{|photo| photo[:uploader_id] = @user.id}
+    end
   end
   
   test "Disc Golf Courses" do
     # Users can create courses.
     sign_in @user
     assert_difference 'Course.count', 1 do
-      post '/courses', params: @adams_hollow
+      post '/api/courses', params: @adams_hollow
     end
     
     # After creating a course, it's viewable to the public.
     new_course_id = Course.last.id
-    get "/courses/#{new_course_id}"
+    get "/api/courses/#{new_course_id}"
     assert_response :success
     assert_includes(response.body, @adams_hollow[:course][:description])
+    assert_includes(response.body, @adams_hollow[:course][:photos_attributes][0][:url])
+    assert_includes(response.body, @adams_hollow[:course][:hole_layouts_attributes][0][:name])
+    assert_includes(response.body, @adams_hollow[:course][:hole_layouts_attributes][0][:holes_attributes][0][:distance].to_s)
 
     # Grabbing the index returns all courses.
     sign_in @user
-    post '/courses', params: @birds_nest
+    post '/api/courses', params: @birds_nest
     sign_in @user
-    post '/courses', params: @spooky_gulch
-    get '/courses'
+    post '/api/courses', params: @spooky_gulch
+    get '/api/courses'
     assert_response :success
     assert_includes(response.body, @adams_hollow[:course][:name])
     assert_includes(response.body, @birds_nest[:course][:name])
@@ -94,7 +58,7 @@ class CourseTest < ActionDispatch::IntegrationTest
     }
     last_course_id = Course.last.id
     sign_in @admin
-    patch "/courses/#{last_course_id}", params: admin_params
+    patch "/api/courses/#{last_course_id}", params: admin_params
     assert_includes(response.body, admin_conditions)
     
     curator_conditions = "The sun came out and dried up all the mud."
@@ -104,18 +68,18 @@ class CourseTest < ActionDispatch::IntegrationTest
       }
     }
     sign_in @user
-    patch "/courses/#{last_course_id}", params: curator_params
+    patch "/api/courses/#{last_course_id}", params: curator_params
     assert_includes(response.body, curator_conditions)
     
     # Curators and admins can also delete a course.
     sign_in @admin
     assert_difference 'Course.count', -1 do
-      delete "/courses/#{last_course_id}"
+      delete "/api/courses/#{last_course_id}"
     end
     next_course_id = Course.last.id
     sign_in @user
     assert_difference 'Course.count', -1 do
-      delete "/courses/#{next_course_id}"
+      delete "/api/courses/#{next_course_id}"
     end
     
     # Nobody else can update or delete courses.
@@ -128,34 +92,40 @@ class CourseTest < ActionDispatch::IntegrationTest
     last_course_id = Course.last.id
     course_conditions = Course.last.current_conditions
     sign_in @jabroni
-    patch "/courses/#{last_course_id}", params: jabroni_params
+    patch "/api/courses/#{last_course_id}", params: jabroni_params
     refute_equal course_conditions, jabroni_conditions
     sign_in @jabroni
     assert_no_difference 'Course.count' do
-      delete "/courses/#{last_course_id}"
+      delete "/api/courses/#{last_course_id}"
     end
     
-    # Courses can't be created without a name, latitude and longitude.
+    # Courses can't be created without a name, city, latitude and longitude.
     assert_no_difference 'Course.count' do
       name_missing_params = @adams_hollow.deep_dup
       name_missing_params[:course][:name] = ""
       sign_in @user
-      post "/courses/", params: name_missing_params
+      post "/api/courses/", params: name_missing_params
+    end
+    assert_no_difference 'Course.count' do
+      city_missing_params = @adams_hollow.deep_dup
+      city_missing_params[:course][:city] = ""
+      sign_in @user
+      post "/api/courses/", params: city_missing_params
     end
     assert_no_difference 'Course.count' do
       latitude_missing_params = @birds_nest.deep_dup
       latitude_missing_params[:course][:lat] = nil
       sign_in @admin
-      post "/courses/", params: latitude_missing_params
+      post "/api/courses/", params: latitude_missing_params
     end
     assert_no_difference 'Course.count' do
       longitude_missing_params = @spooky_gulch.deep_dup
       longitude_missing_params[:course][:lng] = nil
       sign_in @jabroni
-      post "/courses/", params: longitude_missing_params
+      post "/api/courses/", params: longitude_missing_params
     end
     
-    # Course descriptions and current conditions can't be over 300 characters.
+    # Course descriptions can't be over 600 characters.
     stephen_king_description = "A whole lot of words! " * 100
     stephen_king_params = {
       course: {
@@ -163,19 +133,98 @@ class CourseTest < ActionDispatch::IntegrationTest
       }
     }
     sign_in @user
-    patch "/courses/#{last_course_id}", params: stephen_king_params
+    patch "/api/courses/#{last_course_id}", params: stephen_king_params
     course_description = Course.last.description
     refute_equal course_description, stephen_king_description
     
-    stephen_king_conditions = "My typewriter ribbon could go around the moon twice! " * 100
-    stephen_king_params = {
+    # Courses can only have 20 or fewer photos.
+    a_lot_of_photos = Array.new(23).map{{url: "https://coolphotos.com/photo24", uploader_id: @user.id}}
+    too_many_photos_params = {
       course: {
-        current_conditions: stephen_king_conditions
+        photos_attributes: a_lot_of_photos
       }
     }
     sign_in @user
-    patch "/courses/#{last_course_id}", params: stephen_king_params
-    course_conditions = Course.last.current_conditions
-    refute_equal course_conditions, stephen_king_conditions
+    assert_no_difference 'Course.last.photos.count' do
+      patch "/api/courses/#{last_course_id}", params: too_many_photos_params
+    end
+    
+    # Hole layouts must have a name.
+    empty_layout_name = ""
+    no_name_layout_params = {
+      course: {
+        hole_layouts_attributes: [
+          {
+            name: empty_layout_name
+          }
+        ]
+      }
+    }
+    sign_in @user
+    patch "/api/courses/#{last_course_id}", params: no_name_layout_params
+    assert_equal Course.last.hole_layouts.count, 0
+    
+    # Hole layouts can have 99 holes max.
+    an_impossibly_large_course = Array.new(101).map.with_index(1){|e, i| {name: i.to_s, par: 3, distance: 305}}
+    impossibly_large_course_params = {
+      course: {
+        hole_layouts_attributes: [
+          {name: "Huge Course",
+            holes_attributes: an_impossibly_large_course}
+          ]
+      }
+    }
+    sign_in @user
+    assert_no_difference 'Course.last.hole_layouts.count' do
+      patch "/api/courses/#{last_course_id}", params: impossibly_large_course_params
+    end
+    
+    # Holes must have names.
+    hole_without_a_name = {par: 3, distance: 999}
+    no_name_hole_params = {
+      course: {
+        hole_layouts_attributes: [
+          name: "new layout that doesn't believe in hole names",
+          holes_attributes: [
+            hole_without_a_name
+          ]
+        ]
+      }
+    }
+    sign_in @user
+    patch "/api/courses/#{last_course_id}", params: no_name_hole_params
+    assert_not Hole.find_by(distance: hole_without_a_name[:distance])
+    
+    # Hole names can't be longer than 3 characters.
+    hole_with_a_long_name = {name: "cool hole here, pretty easy", par: 5, distance: 250}
+    long_name_hole_params = {
+      course: {
+        hole_layouts_attributes: [
+          name: "hole_name_is_out_of_hand",
+          holes_attributes: [
+            hole_with_a_long_name
+          ]
+        ]
+      }
+    }
+    sign_in @user
+    patch "/api/courses/#{last_course_id}", params: long_name_hole_params
+    assert_not Hole.find_by(name: hole_with_a_long_name[:name])
+    
+    # Holes must have pars.
+    hole_without_a_par = {name: "Whoops, no par", distance: 711}
+    no_par_hole_params = {
+      course: {
+        hole_layouts_attributes: [
+          name: "new layout that doesn't believe in hole names",
+          holes_attributes: [
+            hole_without_a_par
+          ]
+        ]
+      }
+    }
+    sign_in @user
+    patch "/api/courses/#{last_course_id}", params: no_par_hole_params
+    assert_not Hole.find_by(name: hole_without_a_par[:name])
   end
 end

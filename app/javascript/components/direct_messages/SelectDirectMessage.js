@@ -45,7 +45,7 @@ const SelectDirectMessage = ({
     if (auth.userLoggedIn && checkForReadBy(message)) {
       axios
         .patch(
-          `/messages/${message.id}`,
+          `/api/messages/${message.id}`,
           {},
           {
             headers: {

@@ -7,7 +7,7 @@ import ErrorWindow from "../form_elements/ErrorWindow";
 
 import { useAuth } from "../../hooks/use-auth";
 
-const NewDirectMessageForm = ({ recipientId }) => {
+const NewDirectMessageForm = ({ subject, recipientId, buttonText }) => {
   const auth = useAuth();
 
   const [active, setActive] = useState("");
@@ -35,7 +35,7 @@ const NewDirectMessageForm = ({ recipientId }) => {
     if (auth.userLoggedIn && validateDM(subject, message)) {
       axios
         .post(
-          "/direct_messages",
+          "/api/direct_messages",
           {
             direct_message: {
               sender_id: parseInt(auth.userId),
@@ -63,15 +63,15 @@ const NewDirectMessageForm = ({ recipientId }) => {
   }
 
   return (
-    <div className={`new-direct-message dropdown ${active}`}>
+    <div className={`new-direct-message dropdown is-up ${active}`}>
       <div className="dropdown-trigger" onClick={() => toggleActive()}>
         <button
-          className="button"
+          className="button is-success"
           aria-haspopup="true"
           aria-controls={`dropdown-menu ${recipientId}`}
         >
-          <img src="mail.svg" className="mail-icon" />
-          <span>Message</span>
+          <img src="/mail.svg" className="mail-icon" />
+          <span>{buttonText}</span>
         </button>
       </div>
       <div
@@ -87,6 +87,7 @@ const NewDirectMessageForm = ({ recipientId }) => {
                 inputId={`subject ${recipientId}`}
                 inputType={"text"}
                 testId={`dm-subject ${recipientId}`}
+                initialValue={`${subject} - feedback`}
               />
             </div>
             <div className="dropdown-item">

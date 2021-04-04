@@ -30,7 +30,7 @@ const NewMessageForm = ({ directMessageId, messages, setSelectedMessages }) => {
     if (auth.userLoggedIn && validateMessage(content)) {
       axios
         .post(
-          "/messages",
+          "/api/messages",
           {
             message: {
               author_id: parseInt(auth.userId),

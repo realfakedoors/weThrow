@@ -96,4 +96,4 @@ describe("direct messages", () => {
   });
 });
 
-// Our DirectMessage controller actions are tested in /test/integration/direct_message_test.rb
+// Our DirectMessage API is tested in /test/integration/direct_message_test.rb

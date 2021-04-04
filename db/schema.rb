@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_16_075716) do
+ActiveRecord::Schema.define(version: 2021_03_30_191330) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,17 +19,28 @@ ActiveRecord::Schema.define(version: 2021_03_16_075716) do
     t.bigint "curator_id", null: false
     t.string "name"
     t.text "description"
-    t.text "current_conditions"
+    t.text "current_conditions", default: "Unknown"
     t.string "public_availability"
-    t.string "schedule"
-    t.bigint "lat"
-    t.bigint "lng"
+    t.string "seasonality"
+    t.decimal "lat"
+    t.decimal "lng"
     t.string "address"
     t.string "city"
     t.string "state"
     t.integer "zip"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "course_designer"
+    t.string "teepads"
+    t.text "baskets"
+    t.integer "established"
+    t.string "pet_policy"
+    t.boolean "public_restrooms"
+    t.boolean "cart_friendly"
+    t.boolean "free_parking"
+    t.boolean "camping"
+    t.boolean "dedicated_property"
+    t.string "curator_name"
     t.index ["curator_id"], name: "index_courses_on_curator_id"
   end
 
@@ -42,6 +53,24 @@ ActiveRecord::Schema.define(version: 2021_03_16_075716) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["recipient_id"], name: "index_direct_messages_on_recipient_id"
     t.index ["sender_id"], name: "index_direct_messages_on_sender_id"
+  end
+
+  create_table "hole_layouts", force: :cascade do |t|
+    t.bigint "course_id"
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["course_id"], name: "index_hole_layouts_on_course_id"
+  end
+
+  create_table "holes", force: :cascade do |t|
+    t.bigint "hole_layout_id"
+    t.string "name", null: false
+    t.integer "par", null: false
+    t.integer "distance"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["hole_layout_id"], name: "index_holes_on_hole_layout_id"
   end
 
   create_table "jwt_denylist", force: :cascade do |t|
@@ -97,6 +126,8 @@ ActiveRecord::Schema.define(version: 2021_03_16_075716) do
   add_foreign_key "courses", "users", column: "curator_id"
   add_foreign_key "direct_messages", "users", column: "recipient_id"
   add_foreign_key "direct_messages", "users", column: "sender_id"
+  add_foreign_key "hole_layouts", "courses"
+  add_foreign_key "holes", "hole_layouts"
   add_foreign_key "messages", "users", column: "author_id"
   add_foreign_key "photos", "users", column: "uploader_id"
 end

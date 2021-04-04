@@ -21,6 +21,10 @@ import Help from "./company_pages/Help";
 import AdminMessages from "./direct_messages/AdminMessages";
 import UserMessages from "./direct_messages/UserMessages";
 
+import Course from "./courses/Course";
+import NewCourse from "./courses/NewCourse";
+import EditCourse from "./courses/EditCourse";
+
 import HomePage from "./HomePage";
 import Dashboard from "./Dashboard";
 
@@ -32,43 +36,52 @@ const App = () => {
           <SiteNav />
           <div id={"app-body"}>
             <Switch>
-              <Route exact path={"/"}>
+              <Route exact path="/">
                 <HomePage />
               </Route>
-              <Route path={"/sign_up"}>
+              <Route path="/sign_up">
                 <SignUp />
               </Route>
-              <Route path={"/sign_in"}>
+              <Route path="/sign_in">
                 <SignIn />
               </Route>
-              <Route path={"/reset_password"}>
+              <Route path="/reset_password">
                 <ResetPassword />
               </Route>
-              <Route path={"/change_password"}>
+              <Route path="/change_password">
                 <EnterNewPassword />
               </Route>
-              <Route path={"/confirm"}>
+              <Route path="/confirm">
                 <ConfirmPassword />
               </Route>
-              <Route path={"/about"}>
+              <Route path="/about">
                 <About />
               </Route>
-              <Route path={"/contact"}>
+              <Route path="/contact">
                 <Contact />
               </Route>
-              <Route path={"/jobs"}>
+              <Route path="/jobs">
                 <Jobs />
               </Route>
-              <Route path={"/help"}>
+              <Route path="/help">
                 <Help />
               </Route>
-              <PrivateRoute path={"/dashboard"}>
+              <PrivateRoute path="/new_course">
+                <NewCourse />
+              </PrivateRoute>
+              <Route path="/courses/:id">
+                <Course />
+              </Route>
+              <PrivateRoute path="/edit_course/:id">
+                <EditCourse />
+              </PrivateRoute>
+              <PrivateRoute path="/dashboard">
                 <Dashboard />
               </PrivateRoute>
-              <PrivateRoute path={"/messages"}>
+              <PrivateRoute path="/messages">
                 <UserMessages />
               </PrivateRoute>
-              <AdminRoute path={"/admin"}>
+              <AdminRoute path="/admin">
                 <AdminMessages />
               </AdminRoute>
             </Switch>

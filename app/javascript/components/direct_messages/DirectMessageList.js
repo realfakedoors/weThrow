@@ -10,7 +10,7 @@ const DirectMessageList = ({
   partners,
 }) => {
   function getPartner(dm) {
-    return partners[0][dm.id];
+    return partners.find((user) => user[dm.id])[dm.id];
   }
 
   let displayDirectMessages = [];

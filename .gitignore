@@ -33,5 +33,8 @@ yarn-debug.log*
 # Ignore Figaro's environment variables.
 /config/application.yml
 
+# Ignore Webpacker's environment variables.
+.env
+
 # Ignore Guardfile, as we're strictly using it for QoL in dev.
 Guardfile
