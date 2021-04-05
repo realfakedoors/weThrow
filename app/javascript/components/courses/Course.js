@@ -61,16 +61,10 @@ const Course = () => {
               publicRestrooms={courseData.public_restrooms}
             />
             <CourseMap
-              lat={parseFloat(courseData.lat)}
-              lng={parseFloat(courseData.lng)}
-              googleMapURL={
-                "https://maps.googleapis.com/maps/api/js?&key=" +
-                process.env.REACT_APP_GOOGLE_MAPS_KEY +
-                "&v=3.exp"
-              }
-              loadingElement={<div style={{ height: `300px` }} />}
-              containerElement={<div style={{ height: `300px` }} />}
-              mapElement={<div style={{ height: `300px` }} />}
+              courseLocation={{
+                lat: parseFloat(courseData.lat),
+                lng: parseFloat(courseData.lng),
+              }}
             />
             <Location
               address={courseData.address}

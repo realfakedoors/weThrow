@@ -254,14 +254,6 @@ const CourseForm = ({ title, buttonText, prepopulatedCourseData }) => {
         <GoogleMapPicker
           setMapCoords={setMapCoords}
           defaultCoords={mapCoords}
-          googleMapURL={
-            "https://maps.googleapis.com/maps/api/js?&key=" +
-            process.env.REACT_APP_GOOGLE_MAPS_KEY +
-            "&v=3.exp"
-          }
-          loadingElement={<div style={{ height: `400px` }} />}
-          containerElement={<div style={{ height: `400px` }} />}
-          mapElement={<div style={{ height: `400px` }} />}
         />
         <hr />
         <HoleInfoForm

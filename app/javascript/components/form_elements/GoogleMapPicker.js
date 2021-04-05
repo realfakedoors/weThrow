@@ -1,41 +1,44 @@
 import React, { useState, useEffect } from "react";
 
-import {
-  withScriptjs,
-  withGoogleMap,
-  GoogleMap,
-  Marker,
-} from "react-google-maps";
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 
-const GoogleMapPicker = (props) => {
-  const defaultPosition = {
-    lat: 39.7392,
-    lng: -104.9903,
-  };
-  const [markerPosition, setMarkerPosition] = useState(defaultPosition);
+const containerStyle = {
+  height: "400px",
+};
+
+const defaultCenter = {
+  lat: 39.7392,
+  lng: -104.9903,
+};
+
+const GoogleMapPicker = ({ defaultCoords, setMapCoords }) => {
+  const [markerPosition, setMarkerPosition] = useState(defaultCenter);
 
   useEffect(() => {
-    if (props.defaultCoords.lat) {
-      setMarkerPosition(props.defaultCoords);
+    if (defaultCoords) {
+      setMarkerPosition(defaultCoords);
     }
-  }, [props.defaultCoords]);
+  }, [defaultCoords]);
 
   function handleClick(coords) {
     const newCoords = { lat: coords.latLng.lat(), lng: coords.latLng.lng() };
-    props.setMapCoords(newCoords);
+    setMapCoords(newCoords);
     setMarkerPosition(newCoords);
   }
 
   return (
-    <GoogleMap
-      defaultZoom={8}
-      defaultCenter={defaultPosition}
-      options={{ streetViewControl: false, mapTypeControl: false }}
-      onClick={(coords) => handleClick(coords)}
-    >
-      <Marker position={markerPosition} />
-    </GoogleMap>
+    <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_KEY}>
+      <GoogleMap
+        zoom={8}
+        center={defaultCenter}
+        options={{ streetViewControl: false, mapTypeControl: false }}
+        mapContainerStyle={containerStyle}
+        onClick={(coords) => handleClick(coords)}
+      >
+        <Marker position={markerPosition} />
+      </GoogleMap>
+    </LoadScript>
   );
 };
 
-export default withScriptjs(withGoogleMap(GoogleMapPicker));
+export default React.memo(GoogleMapPicker);
