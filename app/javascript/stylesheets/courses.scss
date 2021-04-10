@@ -1,0 +1,251 @@
+.course {
+  max-width: 880px;
+  margin: 0 auto;
+  .course-tags {
+    margin-top: 28px;
+    font-weight: 700;
+  }
+  .course-location {
+    margin-top: 12px;
+  }
+  .course-detail {
+    margin-top: -16px;
+    .detail {
+      margin-left: 8px;
+    }
+  }
+
+  .quick-info {
+    display: flex;
+    align-items: flex-end;
+  }
+  .course-difficulty {
+    width: 192px;
+    height: 130px;
+
+    margin-top: 6px;
+    margin-left: 8px;
+
+    padding: 4px 0;
+    border: 2px solid black;
+    border-radius: 6px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .subtitle {
+      margin-top: 4px;
+    }
+  }
+  .course-description,
+  .current-conditions {
+    max-width: 600px;
+  }
+  .display-conditions {
+    margin-left: 8px;
+  }
+  .set-current-conditions {
+    margin-top: 12px;
+  }
+  .change-current-conditions {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-around;
+
+    margin: 12px 0;
+  }
+  .curator-controls {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.new-course {
+  max-width: 700px;
+  margin: 0 auto;
+  .terms-of-curatorship {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .set-tags,
+  .enter-address {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+    .misc-checkboxes {
+      width: 380px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-self: center;
+    }
+    .checkbox {
+      margin-right: 4px;
+    }
+  }
+  .enter-address > * {
+    margin: 0 4px;
+  }
+  .submit-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .new-hole-layout-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    #number-of-holes {
+      width: 70px;
+      margin: 0 8px;
+    }
+    button:last-child {
+      position: relative;
+      top: 10px;
+    }
+  }
+  .name-bar {
+    display: flex;
+    justify-content: space-between;
+  }
+  .all-hole-fields {
+    margin: 8px;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    .hole-fields {
+      width: 11%;
+      border: 1px solid #a6a6a6;
+      border-radius: 5px;
+      padding: 0 2px;
+      margin-bottom: 8px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+  .delete-layout-button {
+    height: 20px;
+    width: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 2px solid #e82917;
+    border-radius: 3px;
+    color: #e82917;
+    background-color: #f57c71;
+    cursor: pointer;
+
+    font-size: 12px;
+    line-height: 12px;
+  }
+
+  .error-window {
+    margin-top: 12px;
+  }
+}
+
+.average-rating {
+  width: 112px;
+  height: 130px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 4px;
+  border: 2px solid black;
+  border-radius: 6px;
+  .rating-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .rating-average {
+      margin-bottom: 0;
+    }
+    .verdict {
+      margin-top: -5px;
+    }
+  }
+  .rating-graphic {
+    margin: 6px;
+    width: 90px;
+    border: 1px solid #777;
+  }
+}
+
+.display-holes {
+  display: flex;
+  flex-wrap: wrap;
+  .hole {
+    width: 11%;
+    margin-bottom: 8px;
+    border-right: 2px solid #bfbfbf;
+  }
+  .hole:nth-child(9n) {
+    border-right: none;
+  }
+}
+
+.layout-info {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  .layout-name {
+    flex: 1;
+  }
+  .total-par {
+    padding-right: 6px;
+    margin-right: 5px;
+    border-right: 1px solid #333;
+  }
+}
+
+.course-listings {
+  position: relative;
+
+  max-width: 440px;
+  min-width: 30%;
+  height: 82vh;
+
+  z-index: 2;
+  .search-courses {
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      .text-field {
+        width: 100%;
+        margin-right: 8px;
+      }
+    }
+  }
+  .listing {
+    cursor: pointer;
+    color: inherit;
+    .content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .basic-info {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+}
+
+.my-courses-table {
+  position: relative;
+  .create-course-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+  }
+}

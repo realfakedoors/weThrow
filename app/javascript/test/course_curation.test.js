@@ -36,10 +36,10 @@ describe("Disc Golf Courses", () => {
     fireEvent.click(getByText("Log In"));
     expect(getByText("sign in to your account to continue!"));
     fireEvent.change(screen.getByTestId(/login-email/), {
-      target: { value: "shooterG@discgolf.net" },
+      target: { value: "rocko1@o-town.net" },
     });
     fireEvent.change(screen.getByTestId(/login-password/), {
-      target: { value: "MasterBlaster" },
+      target: { value: "spunky" },
     });
     fireEvent.click(getByText("Sign In"));
     await waitFor(() => {
@@ -182,7 +182,7 @@ describe("Disc Golf Courses", () => {
       expect(screen.getByText("Buzzard's Perch"));
     });
 
-    // Our curator can edit the course,
+    // Our curator can edit their course.
     fireEvent.click(getByText("Edit Course"));
     await waitFor(() => {
       expect(screen.getByText("Edit Skeleton Peak"));
@@ -196,7 +196,24 @@ describe("Disc Golf Courses", () => {
       );
     });
 
-    // Or delete it.
+    // Curators can view their courses in their dashboard.
+    fireEvent.click(getByText("Rocko"));
+    await waitFor(() => {
+      expect(screen.getByText("Dashboard"));
+      expect(screen.getByText("Skeleton Peak"));
+      expect(screen.getByText("Tanzania, CO"));
+      expect(screen.getByText("Sketchy"));
+    });
+
+    // Curators can delete their courses.
+    fireEvent.click(getByText("Skeleton Peak"));
+    await waitFor(() => {
+      expect(
+        screen.getByText(
+          "This course is insane. Don't play it unless you're cool with near-death experiences."
+        )
+      );
+    });
     fireEvent.click(getByText("Edit Course"));
     await waitFor(() => {
       expect(screen.getByText("Delete Skeleton Peak"));
@@ -205,7 +222,7 @@ describe("Disc Golf Courses", () => {
       fireEvent.click(getByText("Delete Skeleton Peak"));
     });
     await waitFor(() => {
-      expect(screen.getByText("Really Good Disc Golfer"));
+      expect(screen.getByText("Rocko"));
       expect(screen.queryByText("Skeleton Peak")).toBe(null);
     });
   });

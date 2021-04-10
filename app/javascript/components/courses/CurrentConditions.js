@@ -1,62 +1,42 @@
-import React from "react";
-import { useAuth } from "../../hooks/use-auth";
+import React, { useState, useEffect, Fragment } from "react";
 
-import ChangeCurrentConditions from "./ChangeCurrentConditions";
+const CurrentConditions = ({ courseConditions, courseView, conditionSize }) => {
+  const [conditionColor, setConditionColor] = useState(null);
 
-const CurrentConditions = ({
-  courseId,
-  courseConditions,
-  setConditions,
-  curatorId,
-}) => {
-  const auth = useAuth();
-
-  function userIsAuthorized() {
-    if (curatorId === auth.userId || auth.adminStatus) {
-      return true;
-    } else {
-      return false;
+  useEffect(() => {
+    switch (courseConditions) {
+      case "Unknown":
+        setConditionColor("has-background-grey has-text-light");
+        break;
+      case "Good":
+        setConditionColor("is-success");
+        break;
+      case "Sketchy":
+        setConditionColor("is-warning");
+        break;
+      case "Unplayable":
+        setConditionColor("is-danger");
+        break;
+      case "Closed":
+        setConditionColor("has-background-dark has-text-light");
+        break;
     }
-  }
+  }, [courseConditions]);
 
-  let conditionColor;
-  switch (courseConditions) {
-    case "Good":
-      conditionColor = "is-success";
-      break;
-    case "Sketchy":
-      conditionColor = "is-warning";
-      break;
-    case "Unplayable":
-      conditionColor = "is-danger";
-      break;
-    case "Closed":
-      conditionColor = "has-background-dark has-text-light";
-      break;
-  }
   return (
     <div className={"current-conditions has-text-centered"}>
-      <hr />
-      <span className={"subtitle is-6"}>{"Current Conditions:"}</span>
+      {courseView && (
+        <Fragment>
+          <hr />
+          <span className={"subtitle is-6"}>{"Current Conditions:"}</span>
+        </Fragment>
+      )}
       <span
-        className={`display-conditions tag is-large uppercase ${conditionColor}`}
+        className={`display-conditions tag is-${conditionSize} uppercase ${conditionColor}`}
       >
         {courseConditions}
       </span>
-      {userIsAuthorized() && (
-        <div>
-          <hr />
-          <h3 className="subtitle is-5 has-text-centered set-current-conditions uppercase">
-            Set Current Conditions
-            <ChangeCurrentConditions
-              courseId={courseId}
-              courseConditions={courseConditions}
-              setConditions={setConditions}
-            />
-          </h3>
-        </div>
-      )}
-      <hr />
+      {courseView && <hr />}
     </div>
   );
 };

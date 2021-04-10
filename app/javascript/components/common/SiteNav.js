@@ -57,6 +57,9 @@ const SiteNav = () => {
 
   let navSiteLinks = (
     <Fragment>
+      <NavLink to="/courses" className="navbar-item">
+        Courses
+      </NavLink>
       <NavLink to="#" className="navbar-item">
         Tournaments
       </NavLink>

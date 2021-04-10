@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useAuth } from "../../hooks/use-auth";
 
 import axios from "axios";
 
@@ -9,6 +10,7 @@ import Location from "./Location";
 import Difficulty from "./Difficulty";
 import Description from "./Description";
 import CurrentConditions from "./CurrentConditions";
+import ChangeCurrentConditions from "./ChangeCurrentConditions";
 import CourseDetails from "./CourseDetails";
 import CuratorControls from "./CuratorControls";
 import HoleLayouts from "./HoleLayouts";
@@ -17,6 +19,8 @@ import PhotoGallery from "../photos/PhotoGallery";
 
 const Course = () => {
   let { id } = useParams();
+
+  const auth = useAuth();
 
   const [courseData, setCourseData] = useState(null);
   const [currentConditions, setConditions] = useState(null);
@@ -40,6 +44,14 @@ const Course = () => {
       .catch((err) => console.error(err));
   }
 
+  function userIsAuthorized() {
+    if (courseData.curator_id === auth.userId || auth.adminStatus) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   return (
     <div className={"course box is-mobile is-centered"}>
       {courseData && (
@@ -60,12 +72,14 @@ const Course = () => {
               freeParking={courseData.free_parking}
               publicRestrooms={courseData.public_restrooms}
             />
-            <CourseMap
-              courseLocation={{
-                lat: parseFloat(courseData.lat),
-                lng: parseFloat(courseData.lng),
-              }}
-            />
+            {courseData.lat && (
+              <CourseMap
+                courseLocation={{
+                  lat: parseFloat(courseData.lat),
+                  lng: parseFloat(courseData.lng),
+                }}
+              />
+            )}
             <Location
               address={courseData.address}
               city={courseData.city}
@@ -88,6 +102,7 @@ const Course = () => {
               courseName={courseData.name}
               curatorId={courseData.curator_id}
               courseId={courseData.id}
+              authorized={userIsAuthorized()}
             />
           </div>
           <div className={"course-info-right column"}>
@@ -96,11 +111,18 @@ const Course = () => {
             )}
             <Description text={courseData.description} />
             <CurrentConditions
-              courseId={courseData.id}
               courseConditions={currentConditions}
-              setConditions={setConditions}
-              curatorId={courseData.curator_id}
+              courseView={true}
+              conditionSize={"large"}
             />
+            {userIsAuthorized() && (
+              <ChangeCurrentConditions
+                courseId={courseData.id}
+                courseConditions={currentConditions}
+                setConditions={setConditions}
+              />
+            )}
+
             <HoleLayouts
               allLayouts={courseData.hole_layouts}
               allHoles={courseData.holes}

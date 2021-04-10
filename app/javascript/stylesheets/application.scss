@@ -1,2 +1,22 @@
-@import "./custom.scss";
+@import "./auth.scss";
+@import "./common.scss";
+@import "./company_pages.scss";
+@import "./courses.scss";
+@import "./direct_messages.scss";
+@import "./form_elements.scss";
+@import "./photos.scss";
+
+// Bulma color variables
+$army-green: hsl(120, 20%, 50%);
+$burnt-red: hsl(0, 40%, 50%);
+$washed-yellow: hsl(60, 80%, 50%);
+$deep-blue: hsl(240, 50%, 50%);
+$light-blue: hsl(195, 55%, 50%);
+
+$success: $army-green;
+$danger: $burnt-red;
+$warning: $washed-yellow;
+$link: $deep-blue;
+$info: $light-blue;
+
 @import "~bulma";

@@ -26,6 +26,7 @@ const AddressForm = () => {
           label={"State"}
           inputId={"state"}
           options={allStateAbbreviations}
+          defaultValue={"CO"}
         />
         <TextField
           label={"Zip Code"}

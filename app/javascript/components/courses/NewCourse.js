@@ -38,7 +38,7 @@ const NewCourse = () => {
         </div>
         <div className={"block is-size-5"}>
           {
-            "Again, thank you for helping us out by adding and maintaining courses. We appreciate you so much."
+            "Again, thank you for helping us out by adding and maintaining courses. We appreciate you SO much."
           }
         </div>
         <button

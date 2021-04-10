@@ -6,8 +6,6 @@ class Course < ApplicationRecord
   
   validates :name, presence: true, length: { in: 6..75 }
   validates :description, length: { maximum: 600 }
-  validates_presence_of :lat
-  validates_presence_of :lng
   validates_presence_of :city
   validates :photos, length: { maximum: 20 }
   validates_associated :photos, :hole_layouts, :holes

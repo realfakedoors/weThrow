@@ -1,11 +1,11 @@
 import React from "react";
 
-import SitewideSearchBar from "./common/SitewideSearchBar";
+import CourseSearchBar from "./courses/CourseSearchBar";
 
 const HomePage = () => {
   return (
     <div className={"home-page"}>
-      <SitewideSearchBar />
+      <CourseSearchBar />
     </div>
   );
 };

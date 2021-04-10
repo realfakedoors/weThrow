@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import { GoogleMap, LoadScriptNext, Marker } from "@react-google-maps/api";
 
 const containerStyle = {
   height: "400px",
@@ -27,7 +27,7 @@ const GoogleMapPicker = ({ defaultCoords, setMapCoords }) => {
   }
 
   return (
-    <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_KEY}>
+    <LoadScriptNext googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_KEY}>
       <GoogleMap
         zoom={8}
         center={defaultCenter}
@@ -37,7 +37,7 @@ const GoogleMapPicker = ({ defaultCoords, setMapCoords }) => {
       >
         <Marker position={markerPosition} />
       </GoogleMap>
-    </LoadScript>
+    </LoadScriptNext>
   );
 };
 

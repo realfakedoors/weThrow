@@ -21,9 +21,11 @@ import Help from "./company_pages/Help";
 import AdminMessages from "./direct_messages/AdminMessages";
 import UserMessages from "./direct_messages/UserMessages";
 
+import AllCourses from "./courses/AllCourses";
 import Course from "./courses/Course";
 import NewCourse from "./courses/NewCourse";
 import EditCourse from "./courses/EditCourse";
+import CourseSearchResults from "./courses/CourseSearchResults";
 
 import HomePage from "./HomePage";
 import Dashboard from "./Dashboard";
@@ -71,6 +73,12 @@ const App = () => {
               </PrivateRoute>
               <Route path="/courses/:id">
                 <Course />
+              </Route>
+              <Route path="/search/:searchTerms">
+                <CourseSearchResults />
+              </Route>
+              <Route path="/courses">
+                <AllCourses />
               </Route>
               <PrivateRoute path="/edit_course/:id">
                 <EditCourse />

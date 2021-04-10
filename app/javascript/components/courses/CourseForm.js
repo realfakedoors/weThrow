@@ -19,8 +19,8 @@ const CourseForm = ({ title, buttonText, prepopulatedCourseData }) => {
 
   const [errorMsg, setErrorMsg] = useState("");
   const [mapCoords, setMapCoords] = useState({
-    lat: 39.752819,
-    lng: -104.99971,
+    lat: 39.7392,
+    lng: -104.9903,
   });
   const [selectedPhotos, setSelectedPhotos] = useState([]);
   const [addedHoleLayouts, setAddedHoleLayouts] = useState([]);

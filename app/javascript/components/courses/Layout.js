@@ -8,10 +8,13 @@ const Layout = ({ name, holes }) => {
   const [totalPar, setTotalPar] = useState(0);
 
   useEffect(() => {
+    let layoutDistance = 0;
+    let layoutPar = 0;
+
     setDisplayHoles(
       holes.map((hole) => {
-        setTotalDistance(totalDistance + hole.distance);
-        setTotalPar(totalPar + hole.par);
+        layoutDistance += hole.distance;
+        layoutPar += hole.par;
         return (
           <Hole
             key={hole.id}
@@ -22,7 +25,11 @@ const Layout = ({ name, holes }) => {
         );
       })
     );
+
+    setTotalDistance(layoutDistance);
+    setTotalPar(layoutPar);
   }, []);
+
   return (
     <div className={"block layout"}>
       <div className={"layout-info"}>

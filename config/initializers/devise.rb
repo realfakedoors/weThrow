@@ -3,7 +3,7 @@ Devise.setup do |config|
   # Set the secret key used by Devise with JSON Web Tokens.
   config.jwt do |jwt|
     jwt.secret = ENV['DEVISE_JWT_SECRET_KEY']
-    jwt.expiration_time = 999999
+    jwt.expiration_time = 99999999
   end
 
   # ==> Mailer Configuration

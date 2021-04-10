@@ -1,0 +1,63 @@
+.upload-profile-picture {
+  max-height: 800px;
+  width: 250px;
+
+  padding-top: 18px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .profile-picture-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .file {
+      width: 130px;
+
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.upload-course-photos {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  .title {
+    width: 100%;
+  }
+}
+
+.photo-gallery {
+  position: relative;
+
+  margin-bottom: 24px;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  border-radius: 2px;
+  border: 2px solid #ccc;
+  box-shadow: 4px 6px 5px #ccc;
+  background-color: #e6e6e6;
+
+  .featured-photo,
+  .gallery-photo {
+    border-radius: 5px;
+  }
+  .featured-photo-container {
+    height: 360px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .featured-photo {
+    max-height: 348px;
+    width: 100%;
+  }
+  .gallery-photo {
+    cursor: pointer;
+    margin: 6px;
+  }
+}

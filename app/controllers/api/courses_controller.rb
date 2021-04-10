@@ -1,12 +1,27 @@
 class Api::CoursesController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :update, :destroy]
+  before_action :authenticate_user!, only: [:create, :update, :destroy, :my_courses]
   before_action :set_course, only: [:show, :update, :destroy]
   before_action :correct_user, only: [:update, :destroy]
   
   def index
     @courses = Course.all
     
-    render json: @courses
+    render json: @courses.as_json(include: :photos)
+  end
+  
+  def search
+    search = params[:search]
+    
+    if search.length > 0
+      @courses = Course.find_by("name ILIKE ?", "%#{search}%")
+      render json: @courses.as_json(include: :photos)
+    end
+  end
+  
+  def my_courses
+    @courses = Course.where(curator_id: current_user.id)
+    
+    render json: @courses.as_json(include: :photos)
   end
   
   def show
@@ -78,6 +93,7 @@ class Api::CoursesController < ApplicationController
       :free_parking,
       :camping,
       :dedicated_property,
+      :search,
       photos_attributes: [
         :uploader_id,
         :url

@@ -1,72 +1,13 @@
+/* eslint-disable */
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 
+import { userData, adminData, dmData, msgData, courseData } from "./data";
+
 const sign = require("jwt-encode");
 const secret = "secret";
-const userData = {
-  iat: Date.now(),
-  exp: Date.now() + 10000000,
-  sub: 1,
-  name: "Rocko",
-  username: "rocko1",
-  admin: false,
-};
-const adminData = {
-  iat: Date.now(),
-  exp: Date.now() + 10000000,
-  sub: 2,
-  name: "Dr. Hutchison",
-  username: "hutch1",
-  admin: true,
-};
 const userJWT = sign(userData, secret);
 const adminJWT = sign(adminData, secret);
-
-const dmData = {
-  direct_messages: [
-    {
-      id: 1,
-      category: "private",
-      sender_id: 2,
-      recipient_id: 1,
-      subject: "Hey Hef!",
-      created_at: "2021-03-01T03:09:21.446Z",
-      updated_at: "2021-03-01T03:09:21.446Z",
-      messages: [
-        {
-          id: 1,
-          content: "I can write to you now!",
-          author_id: 2,
-          messageable_type: "DirectMessage",
-          messageable_id: 1,
-          created_at: "2021-03-02T22:18:06.336Z",
-          updated_at: "2021-03-02T22:18:06.336Z",
-          read_by: [],
-        },
-      ],
-    },
-  ],
-  unread_count: 0,
-  partners: [
-    {
-      "1": {
-        name: "Heffer",
-        profile_pic: "default_user.svg",
-      },
-    },
-  ],
-};
-
-const msgData = {
-  id: 2,
-  content: "you're cool.",
-  author_id: 1,
-  messageable_type: "DirectMessage",
-  messageable_id: 1,
-  created_at: "2021-03-02T22:18:06.336Z",
-  updated_at: "2021-03-02T22:18:06.336Z",
-  read_by: [],
-};
 
 export const server = setupServer(
   rest.post("/users/sign_in", (req, res, ctx) => {
@@ -96,5 +37,10 @@ export const server = setupServer(
 
   rest.delete("/users/sign_out", (req, res, ctx) => {
     return res(ctx.json({}));
+  }),
+
+  // Mocked so we can view the My Courses table in the dashboard.
+  rest.get("/api/my_courses", (req, res, ctx) => {
+    return res(ctx.json([courseData]));
   })
 );

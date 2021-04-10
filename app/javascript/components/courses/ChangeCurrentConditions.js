@@ -28,7 +28,9 @@ const ChangeCurrentConditions = ({
 
   return (
     <div className="change-current-conditions">
-      <br />
+      <h3 className="subtitle is-7 has-text-centered set-current-conditions uppercase">
+        Set Current Conditions
+      </h3>
       <div className="select">
         {courseConditions && (
           <select

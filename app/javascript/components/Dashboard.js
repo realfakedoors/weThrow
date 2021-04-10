@@ -1,19 +1,21 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useAuth } from "../hooks/use-auth";
 
 import UploadProfilePicture from "./photos/UploadProfilePicture";
+import MyCoursesTable from "./courses/MyCoursesTable";
 
 const Dashboard = () => {
+  const auth = useAuth();
+
   return (
     <div className={"box"}>
       <h1 className={"title is-1 has-text-centered"}>Dashboard</h1>
-      <UploadProfilePicture />
-      <hr />
-      <span className={"block create-course-button"}>
-        <Link to={"/new_course"} className={"button is-primary"}>
-          Create Course
-        </Link>
-      </span>
+      {auth.userLoggedIn && (
+        <div className={"dashboard-controls"}>
+          <UploadProfilePicture />
+          <MyCoursesTable />
+        </div>
+      )}
     </div>
   );
 };

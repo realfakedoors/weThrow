@@ -49,6 +49,33 @@ class CourseTest < ActionDispatch::IntegrationTest
     assert_includes(response.body, @birds_nest[:course][:name])
     assert_includes(response.body, @spooky_gulch[:course][:name])
     
+    # Getting search_courses with search params returns matching courses.
+    get '/api/search_courses', params: { search: "Adams Hollow"}
+    assert_response :success
+    assert_includes(response.body, @adams_hollow[:course][:name])
+    # Course search is case insensitive.
+    get '/api/search_courses', params: { search: "sPoOky GuLcH disc golf EXPERIENCE"}
+    assert_response :success
+    assert_includes(response.body, @spooky_gulch[:course][:name])
+    # Course search matches a partial string.
+    get '/api/search_courses', params: { search: "sPoOky"}
+    assert_response :success
+    assert_includes(response.body, @spooky_gulch[:course][:name])
+    get '/api/search_courses', params: { search: "bird"}
+    assert_response :success
+    assert_includes(response.body, @birds_nest[:course][:name])
+    
+    # Getting my_courses as a signed-in user returns all the courses a user has created.
+    sign_in @user
+    get '/api/my_courses'
+    assert_response :success
+    assert_includes(response.body, @adams_hollow[:course][:name])
+    assert_includes(response.body, @spooky_gulch[:course][:name])
+    assert_includes(response.body, @birds_nest[:course][:name])
+    # If you're not signed in, you can't view my_courses.
+    get '/api/my_courses'
+    assert_response :redirect
+    
     # Course curators and weThrow admins can update a course.
     admin_conditions = "It just rained and got all muddy."
     admin_params = {
@@ -99,7 +126,7 @@ class CourseTest < ActionDispatch::IntegrationTest
       delete "/api/courses/#{last_course_id}"
     end
     
-    # Courses can't be created without a name, city, latitude and longitude.
+    # Courses can't be created without a name and a city.
     assert_no_difference 'Course.count' do
       name_missing_params = @adams_hollow.deep_dup
       name_missing_params[:course][:name] = ""
@@ -111,18 +138,6 @@ class CourseTest < ActionDispatch::IntegrationTest
       city_missing_params[:course][:city] = ""
       sign_in @user
       post "/api/courses/", params: city_missing_params
-    end
-    assert_no_difference 'Course.count' do
-      latitude_missing_params = @birds_nest.deep_dup
-      latitude_missing_params[:course][:lat] = nil
-      sign_in @admin
-      post "/api/courses/", params: latitude_missing_params
-    end
-    assert_no_difference 'Course.count' do
-      longitude_missing_params = @spooky_gulch.deep_dup
-      longitude_missing_params[:course][:lng] = nil
-      sign_in @jabroni
-      post "/api/courses/", params: longitude_missing_params
     end
     
     # Course descriptions can't be over 600 characters.
