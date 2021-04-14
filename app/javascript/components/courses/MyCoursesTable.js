@@ -50,7 +50,7 @@ const MyCoursesTable = () => {
     <div className={"box my-courses-table table-container"}>
       <h2 className={"title is-5"}>My Courses</h2>
       <span className={"block create-course-button"}>
-        <Link to={"/new_course"} className={"button is-success"}>
+        <Link to={"/new_course"} className={"button is-primary"}>
           Create Course
         </Link>
       </span>

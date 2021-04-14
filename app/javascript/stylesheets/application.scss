@@ -7,15 +7,17 @@
 @import "./photos.scss";
 
 // Bulma color variables
+$aqua: hsl(165, 35%, 50%);
 $army-green: hsl(120, 20%, 50%);
-$burnt-red: hsl(0, 40%, 50%);
 $washed-yellow: hsl(60, 80%, 50%);
+$burnt-red: hsl(0, 40%, 50%);
 $deep-blue: hsl(240, 50%, 50%);
 $light-blue: hsl(195, 55%, 50%);
 
+$primary: $aqua;
 $success: $army-green;
-$danger: $burnt-red;
 $warning: $washed-yellow;
+$danger: $burnt-red;
 $link: $deep-blue;
 $info: $light-blue;
 

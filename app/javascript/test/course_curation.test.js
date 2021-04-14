@@ -182,6 +182,39 @@ describe("Disc Golf Courses", () => {
       expect(screen.getByText("Buzzard's Perch"));
     });
 
+    // Users can leave course reviews.
+    fireEvent.change(
+      screen.getByPlaceholderText("What did you think of Skeleton Peak?"),
+      {
+        target: {
+          value: "Pretty neat course! Watch out for buzzards!",
+        },
+      }
+    );
+    fireEvent.change(screen.getByTestId(/rating-slider/), {
+      target: { value: 7 },
+    });
+    fireEvent.click(getByText("Weigh In"));
+    await waitFor(() => {
+      expect(screen.getByText("Pretty neat course! Watch out for buzzards!"));
+      expect(screen.getByText("7.0"));
+      expect(screen.getByText("Amazing"));
+      expect(screen.getByText("2 Ratings"));
+    });
+    // If the current user already left a review for the course, disable the review form.
+    await waitFor(() => {
+      expect(screen.queryByText("Leave a Review:")).toBeNull();
+      expect(
+        screen.queryByPlaceholderText("What did you think of Skeleton Peak?")
+      ).toBeNull();
+    });
+    // If they change their mind, they can delete their review and leave another one.
+    fireEvent.click(screen.getByTestId(/delete-review/));
+    await waitFor(() => {
+      expect(screen.getByText("1 Rating"));
+      expect(screen.getByText("Leave a Review:"));
+    });
+
     // Our curator can edit their course.
     fireEvent.click(getByText("Edit Course"));
     await waitFor(() => {

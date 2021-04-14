@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :direct_messages
   has_many :messages, through: :direct_messages
   has_many :photos
+  has_many :reviews, through: :courses, dependent: :destroy
   
   validates :username, presence: true, length: { in: 6..20 }, uniqueness: true
   validates :name, length: { maximum: 50 }

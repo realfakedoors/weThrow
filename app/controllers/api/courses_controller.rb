@@ -25,7 +25,7 @@ class Api::CoursesController < ApplicationController
   end
   
   def show
-    render json: @course.as_json(include: [:photos, :hole_layouts, :holes])
+    render json: @course.as_json(include: [:photos, :hole_layouts, :holes, :reviews])
   end
 
   def create

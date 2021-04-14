@@ -12,6 +12,7 @@ import Description from "./Description";
 import CurrentConditions from "./CurrentConditions";
 import ChangeCurrentConditions from "./ChangeCurrentConditions";
 import CourseDetails from "./CourseDetails";
+import CourseReviews from "./CourseReviews";
 import CuratorControls from "./CuratorControls";
 import HoleLayouts from "./HoleLayouts";
 import AverageRating from "../common/AverageRating";
@@ -30,7 +31,7 @@ const Course = () => {
   }, []);
 
   useEffect(() => {
-    if (courseData && courseData.current_conditions) {
+    if (courseData) {
       setConditions(courseData.current_conditions);
     }
   }, [courseData]);
@@ -62,7 +63,10 @@ const Course = () => {
               className={"subtitle is-4 uppercase"}
             >{`${courseData.city}, ${courseData.state}`}</h4>
             <div className={"quick-info"}>
-              <AverageRating />
+              <AverageRating
+                mean={courseData.avg_rating}
+                numberOfRatings={courseData.reviews.length}
+              />
               <Difficulty />
             </div>
             <Tags
@@ -98,6 +102,12 @@ const Course = () => {
               designer={courseData.course_designer}
               curatorName={courseData.curator_name}
             />
+            <CourseReviews
+              reviews={courseData.reviews}
+              courseId={courseData.id}
+              courseName={courseData.name}
+              getCourseData={() => getCourseData()}
+            />
             <CuratorControls
               courseName={courseData.name}
               curatorId={courseData.curator_id}
@@ -122,7 +132,6 @@ const Course = () => {
                 setConditions={setConditions}
               />
             )}
-
             <HoleLayouts
               allLayouts={courseData.hole_layouts}
               allHoles={courseData.holes}

@@ -2,7 +2,7 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 
-import { userData, courseData, dmData } from "./data";
+import { userData, courseData, dmData, reviewData } from "./data";
 
 const sign = require("jwt-encode");
 const userJWT = sign(userData, "secret");
@@ -38,6 +38,16 @@ export const server = setupServer(
 
   rest.delete("/api/courses/:id", (req, res, ctx) => {
     return res(ctx.json({}));
+  }),
+
+  rest.post("/api/reviews", (req, res, ctx) => {
+    courseData.reviews.push(reviewData);
+    return res(ctx.json(courseData));
+  }),
+
+  rest.delete("/api/reviews/:id", (req, res, ctx) => {
+    courseData.reviews.pop(reviewData);
+    return res(ctx.json(courseData));
   }),
 
   // Mocked here so our inbox button renders in our navbar with an 'unread messages' count.

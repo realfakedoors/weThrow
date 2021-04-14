@@ -62,6 +62,18 @@ export const msgData = {
   read_by: [],
 };
 
+export const reviewData = {
+  id: 1,
+  course_id: 1,
+  user_id: 1,
+  rating: 7,
+  user_name: "Rocko1",
+  user_profile_picture: "/user.jpg",
+  assessment: "Pretty neat course! Watch out for buzzards!",
+  created_at: "2021-03-02T22:18:06.336Z",
+  updated_at: "2021-03-02T22:18:06.336Z",
+};
+
 export const courseData = {
   id: 1,
   created_at: "2021-03-02T22:18:06.336Z",
@@ -69,6 +81,7 @@ export const courseData = {
   curator_id: 1,
   curator_name: "Shooter G",
   name: "Skeleton Peak",
+  avg_rating: 8.5,
   description:
     "This course is insane. Don't play it unless you're cool with near-death experiences.",
   current_conditions: "Sketchy",
@@ -145,6 +158,19 @@ export const courseData = {
       name: "3",
       par: 5,
       distance: 721,
+      created_at: "2021-03-02T22:18:06.336Z",
+      updated_at: "2021-03-02T22:18:06.336Z",
+    },
+  ],
+  reviews: [
+    {
+      id: 1,
+      course_id: 1,
+      user_id: 7,
+      rating: 8.5,
+      assessment: "Amazing course. Lots of challenges!",
+      user_name: "Heffer",
+      user_profile_picture: "default",
       created_at: "2021-03-02T22:18:06.336Z",
       updated_at: "2021-03-02T22:18:06.336Z",
     },

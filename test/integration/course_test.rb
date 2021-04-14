@@ -241,5 +241,101 @@ class CourseTest < ActionDispatch::IntegrationTest
     sign_in @user
     patch "/api/courses/#{last_course_id}", params: no_par_hole_params
     assert_not Hole.find_by(name: hole_without_a_par[:name])
+    
+    # Users can review courses, and destroy their own reviews.
+    review_params = {
+      review: {
+        rating: 5,
+        assessment: "It was alright. Meh.",
+        course_id: last_course_id,
+      }
+    }
+    sign_in @user
+    assert_difference "Review.count" do
+      post "/api/reviews/", params: review_params
+    end
+    assert Course.last.reviews.first.assessment == "It was alright. Meh."
+    last_review_id = Review.last.id
+    sign_in @user
+    assert_difference "Review.count", -1 do
+      delete "/api/reviews/#{last_review_id}"
+    end
+    
+    # Admins can also destroy users' reviews.
+    sign_in @user
+    post "/api/reviews/", params: review_params
+    last_review_id = Review.last.id
+    sign_in @admin
+    assert_difference "Review.count", -1 do
+      delete "/api/reviews/#{last_review_id}"
+    end
+    
+    # Users can only leave one review per course.
+    sign_in @user
+    assert_difference "Review.count" do
+      post "/api/reviews/", params: review_params
+    end
+    sign_in @user
+    assert_no_difference "Review.count" do
+      post "/api/reviews/", params: review_params
+    end
+    
+    # Reviews must contain a rating.
+    no_rating_params = {
+      review: {
+        assessment: "It was alright. Meh.",
+        course_id: last_course_id,
+      }
+    }
+    sign_in @user
+    assert_no_difference "Review.count" do
+      post "/api/reviews/", params: no_rating_params
+    end
+    
+    # Ratings can only be on a scale of 1 to 10.
+    enthusiastic_review_params = {
+      review: {
+        rating: 11,
+        assessment: "I really really like this course!",
+        course_id: last_course_id,
+      }
+    }
+    sign_in @user
+    assert_no_difference "Review.count" do
+      post "/api/reviews/", params: enthusiastic_review_params
+    end
+    
+    # Ratings must scale by half integers.
+    weird_review_params = {
+      review: {
+        rating: 5.7,
+        assessment: "I kinda wanna give it a 5.5, but not quite a 6.0",
+        course_id: last_course_id,
+      }
+    }
+    sign_in @user
+    assert_no_difference "Review.count" do
+      post "/api/reviews/", params: weird_review_params
+    end
+    
+    # Assessments can't be longer than 360 characters.
+    insanely_long_assessment_params = {
+      review: {
+        rating: 7,
+        assessment: "whoa" * 360,
+        course_id: last_course_id,
+      }
+    }
+    sign_in @user
+    assert_no_difference "Review.count" do
+      post "/api/reviews/", params: insanely_long_assessment_params
+    end
+    
+    # If a course is destroyed, its ratings are also destroyed.
+    sign_in @user
+    assert_difference "Review.count", -1 do
+      delete "/api/courses/#{last_course_id}"
+    end
+    assert_response :no_content    
   end
 end

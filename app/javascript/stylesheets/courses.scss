@@ -128,23 +128,6 @@
       justify-content: space-between;
     }
   }
-  .delete-layout-button {
-    height: 20px;
-    width: 20px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    border: 2px solid #e82917;
-    border-radius: 3px;
-    color: #e82917;
-    background-color: #f57c71;
-    cursor: pointer;
-
-    font-size: 12px;
-    line-height: 12px;
-  }
 
   .error-window {
     margin-top: 12px;
@@ -158,6 +141,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 
   padding: 4px;
   border: 2px solid black;
@@ -248,4 +232,33 @@
     top: 12px;
     right: 12px;
   }
+}
+
+.review-form-controls {
+  display: flex;
+  justify-content: space-between;
+}
+
+.review {
+  .time {
+    margin-left: 4px;
+  }
+  .status {
+    display: flex;
+    align-items: center;
+    padding: none;
+    .assessment {
+      margin-left: 12px;
+      margin-top: 6px;
+    }
+  }
+}
+
+.rating {
+  padding: 4px;
+  height: 40px;
+  width: 40px;
+
+  font-weight: bolder;
+  font-size: 16px;
 }

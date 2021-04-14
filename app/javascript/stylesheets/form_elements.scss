@@ -6,3 +6,19 @@
 
   border-radius: 10px;
 }
+
+.rating-slider-container {
+  flex: 1;
+  padding-right: 36px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .rating-slider {
+    flex: 1;
+    margin: 0 8px;
+    outline: none;
+  }
+  .title {
+    margin-bottom: 0 !important;
+  }
+}

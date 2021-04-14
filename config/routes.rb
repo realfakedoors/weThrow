@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :direct_messages, only: [:index, :create, :destroy]
     resources :messages, only: [:update, :create, :destroy]
     resources :photos, only: [:new, :create, :destroy]
+    resources :reviews, only: [:create, :destroy]
     
     get 'search_courses', to: 'courses#search'
     get 'my_courses', to: 'courses#my_courses'

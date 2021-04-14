@@ -40,7 +40,7 @@ const LayoutFields = ({
       <div className={"name-bar"}>
         <span className={"title is-5"}>{layoutName}</span>
         <span
-          className={"delete-layout-button"}
+          className={"delete-button"}
           title={"Remove Layout"}
           onClick={() => removeLayout(index)}
         >

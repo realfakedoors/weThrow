@@ -1,6 +1,8 @@
 body {
   min-height: 100vh;
   background-color: #495049;
+  background-image: url("/background.jpg");
+  background-size: cover;
 }
 
 #app-container {
@@ -137,4 +139,22 @@ body {
 
 .uppercase {
   text-transform: uppercase;
+}
+
+.delete-button {
+  height: 20px;
+  width: 20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: 2px solid #e82917;
+  border-radius: 3px;
+  color: #e82917;
+  background-color: #f57c71;
+  cursor: pointer;
+
+  font-size: 12px;
+  line-height: 12px;
 }

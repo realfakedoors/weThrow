@@ -3,7 +3,7 @@ import React from "react";
 import TextField from "../form_elements/TextField";
 import DropdownMenu from "../form_elements/DropdownMenu";
 
-import allStateAbbreviations from "../common/allStates.js";
+import allStateAbbreviations from "../common/all-states.js";
 
 const AddressForm = () => {
   return (
