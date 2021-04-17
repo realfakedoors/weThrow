@@ -176,3 +176,42 @@ export const courseData = {
     },
   ],
 };
+
+export const friendshipData = {
+  new_friend_requests: [
+    {
+      friendship_id: 1,
+      other_user: { id: 1, username: "Cool Guy" },
+      profile_pic: "default.jpg",
+    },
+    {
+      friendship_id: 2,
+      other_user: { id: 2, username: "Awesome Guy" },
+      profile_pic: "default.jpg",
+    },
+  ],
+  confirmed: [
+    {
+      friendship_id: 3,
+      other_user: { id: 3, username: "Neat Guy" },
+      profile_pic: "default.jpg",
+    },
+    {
+      friendship_id: 4,
+      other_user: { id: 4, username: "Amazing Guy" },
+      profile_pic: "default.jpg",
+    },
+  ],
+  sent: [
+    {
+      friendship_id: 5,
+      other_user: { id: 5, username: "Dope Guy" },
+      profile_pic: "default.jpg",
+    },
+    {
+      friendship_id: 6,
+      other_user: { id: 6, username: "Rad Guy" },
+      profile_pic: "default.jpg",
+    },
+  ],
+};

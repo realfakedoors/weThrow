@@ -15,22 +15,30 @@ const UserMessages = () => {
 
   useEffect(() => {
     if (auth.userLoggedIn) {
-      axios
-        .get("/api/direct_messages", {
-          headers: {
-            Authorization: auth.userToken,
-          },
-        })
-        .then((res) => {
-          setDirectMessages(res.data.direct_messages);
-          setPartners(res.data.partners);
-          setLoading(false);
-        })
-        .catch((err) => {
-          console.error(err);
-        });
+      getDirectMessages();
     }
+    return () => {
+      setPartners([]);
+      setDirectMessages([]);
+    };
   }, [auth.userLoggedIn]);
+
+  function getDirectMessages() {
+    axios
+      .get("/api/direct_messages", {
+        headers: {
+          Authorization: auth.userToken,
+        },
+      })
+      .then((res) => {
+        setPartners(res.data.partners);
+        setDirectMessages(res.data.direct_messages);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
 
   let displayMessages;
   if (isLoading) {
@@ -41,6 +49,7 @@ const UserMessages = () => {
         messages={directMessages}
         partners={partners}
         msgSectionTitle={"Messages"}
+        getDirectMessages={getDirectMessages}
       />
     );
   }

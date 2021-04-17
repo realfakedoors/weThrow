@@ -1,4 +1,5 @@
 .inbox {
+  position: relative;
   height: 80vh;
   display: flex;
   .select-direct-messages,
@@ -6,7 +7,10 @@
     overflow-y: auto;
   }
   .select-direct-messages {
+    position: relative;
+    z-index: 2;
     width: 400px;
+    height: 62%;
     border-right: 2px solid #d9d9d9;
     padding-right: 16px;
     padding-left: 8px;
@@ -22,6 +26,7 @@
       }
     }
     overflow-x: hidden;
+    overflow-y: scroll;
   }
   .no-dm-selected {
     margin: 30px auto;
@@ -86,7 +91,7 @@
       }
     }
     .new-message-form {
-      position: sticky;
+      position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
@@ -97,7 +102,7 @@
       padding: 5px 10px;
 
       display: flex;
-      align-items: center;
+      align-items: baseline;
       justify-content: center;
       flex-wrap: wrap;
       background-color: white;
@@ -109,7 +114,7 @@
         position: relative;
         bottom: 2px;
 
-        height: 40px;
+        height: 44px;
         width: 120px;
         margin-left: 12px;
       }
@@ -121,6 +126,23 @@
 }
 
 .new-direct-message {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 400px;
+  z-index: 3;
+
+  padding-right: 16px;
+  height: 38%;
+  .select {
+    width: 100%;
+    #select-recipient {
+      width: 100%;
+    }
+  }
+}
+
+.new-direct-message-dropdown {
   min-width: 340px;
   .mail-icon {
     height: 20px;

@@ -2,7 +2,13 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 
-import { userData, courseData, dmData, reviewData } from "./data";
+import {
+  userData,
+  courseData,
+  dmData,
+  reviewData,
+  friendshipData,
+} from "./data";
 
 const sign = require("jwt-encode");
 const userJWT = sign(userData, "secret");
@@ -53,5 +59,10 @@ export const server = setupServer(
   // Mocked here so our inbox button renders in our navbar with an 'unread messages' count.
   rest.get("/api/direct_messages", (req, res, ctx) => {
     return res(ctx.json(dmData));
+  }),
+
+  // Mocked here so our friendships get rendered in the MyFriends table in the dashboard.
+  rest.get("/api/friendships", (req, res, ctx) => {
+    return res(ctx.json(friendshipData));
   })
 );

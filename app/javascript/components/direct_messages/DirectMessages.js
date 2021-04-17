@@ -2,9 +2,15 @@ import React, { useState, useEffect } from "react";
 
 import DirectMessageList from "./DirectMessageList";
 import DisplayDirectMessage from "./DisplayDirectMessage";
+import NewDirectMessage from "./NewDirectMessage";
 import NewMessageForm from "./NewMessageForm";
 
-const DirectMessages = ({ messages, partners, msgSectionTitle }) => {
+const DirectMessages = ({
+  messages,
+  partners,
+  msgSectionTitle,
+  getDirectMessages,
+}) => {
   const [selectedDirectMessage, setSelectedDirectMessage] = useState(null);
   const [selectedMessages, setSelectedMessages] = useState([]);
   const [selectedPartner, setSelectedPartner] = useState(null);
@@ -53,6 +59,7 @@ const DirectMessages = ({ messages, partners, msgSectionTitle }) => {
           partners={partners}
         />
       </div>
+      <NewDirectMessage getDirectMessages={getDirectMessages} />
       {displayDM}
     </div>
   );

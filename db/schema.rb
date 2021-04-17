@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_12_100403) do
+ActiveRecord::Schema.define(version: 2021_04_14_144048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,14 @@ ActiveRecord::Schema.define(version: 2021_04_12_100403) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["recipient_id"], name: "index_direct_messages_on_recipient_id"
     t.index ["sender_id"], name: "index_direct_messages_on_sender_id"
+  end
+
+  create_table "friendships", force: :cascade do |t|
+    t.integer "buddy_id", null: false
+    t.integer "pal_id", null: false
+    t.boolean "confirmed", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "hole_layouts", force: :cascade do |t|

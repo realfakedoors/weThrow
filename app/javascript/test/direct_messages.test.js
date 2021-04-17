@@ -31,7 +31,7 @@ describe("direct messages", () => {
       </ProvideAuth>
     );
     fireEvent.click(getByText("Log In"));
-    expect(getByText("sign in to your account to continue!"));
+    expect(screen.getByText("sign in to your account to continue!"));
     fireEvent.change(screen.getByTestId(/login-email/), {
       target: { value: "rocko1@o-town.com" },
     });
@@ -41,24 +41,13 @@ describe("direct messages", () => {
     fireEvent.click(getByText("Sign In"));
     await waitFor(() => {
       expect(screen.getByText("Dashboard"));
+      expect(screen.getByText("New Friend Requests"));
+      expect(screen.getByText("Sent Friend Requests"));
       expect(screen.getByText("Inbox"));
     });
 
-    fireEvent.click(getByText("Inbox"));
-    await waitFor(() => {
-      expect(screen.getByText("Messages"));
-    });
-
-    fireEvent.click(getByText("Heffer"));
-    fireEvent.change(screen.getByTestId(/new-message/), {
-      target: { value: "you're cool." },
-    });
-    fireEvent.click(getByText("Send"));
-    await waitFor(() => {
-      expect(screen.getByText("you're cool."));
-    });
-
     fireEvent.click(getByText("Sign Out"));
+
     await waitFor(() => {
       expect(screen.getByText("sign in to your account to continue!"));
       expect(screen.queryByText("Inbox")).toBe(null);
@@ -73,8 +62,9 @@ describe("direct messages", () => {
         </authContext.Provider>
       </ProvideAuth>
     );
+
     await waitFor(() => {
-      expect(getByText("sign in to your account to continue!"));
+      expect(screen.getByText("sign in to your account to continue!"));
     });
 
     fireEvent.change(screen.getByTestId(/login-email/), {

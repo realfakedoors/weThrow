@@ -3,6 +3,7 @@ import { useAuth } from "../hooks/use-auth";
 
 import UploadProfilePicture from "./photos/UploadProfilePicture";
 import MyCoursesTable from "./courses/MyCoursesTable";
+import MyFriends from "./friendships/MyFriends";
 
 const Dashboard = () => {
   const auth = useAuth();
@@ -14,6 +15,7 @@ const Dashboard = () => {
         <div className={"dashboard-controls"}>
           <UploadProfilePicture />
           <MyCoursesTable />
+          <MyFriends />
         </div>
       )}
     </div>

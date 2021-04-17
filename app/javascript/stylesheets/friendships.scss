@@ -1,0 +1,81 @@
+.my-friends {
+  .table {
+    min-width: 340px;
+  }
+  .section-heading {
+    background-color: #e6e6e6;
+  }
+  .new-friend-request {
+    background-color: #d1e0d1;
+  }
+  .sent-friend-request {
+    background-color: #e8c9c9;
+  }
+  .button {
+    margin: 0;
+  }
+  .delete-button {
+    margin-right: 30%;
+    margin-top: 14px;
+  }
+}
+
+.add-a-friend {
+  .add-a-friend-title {
+    font-size: 80px;
+    font-weight: 1000;
+    text-align: center;
+    flex: 1;
+    width: 100%;
+  }
+  .options {
+    width: 100%;
+    margin: 40px 0 80px;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    .option-button {
+      height: 30vh;
+      width: 20vw;
+      padding: 20px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 2px solid #aaa;
+      border-radius: 15px;
+      font-size: 44px;
+      font-weight: 1000;
+      cursor: pointer;
+      box-shadow: 6px 8px 8px #999;
+      text-shadow: 2px 2px 4px black;
+    }
+    .option-button:nth-child(1) {
+      background-color: hsl(240, 50%, 50%);
+      color: white;
+    }
+    .option-button:nth-child(2) {
+      background-color: hsl(0, 40%, 50%);
+      color: white;
+    }
+    .option-button:nth-child(3) {
+      background-color: hsl(60, 80%, 75%);
+      color: white;
+    }
+  }
+}
+
+.send-friend-request {
+  width: 60vw;
+  height: 70vh;
+
+  margin: 0 auto;
+  text-align: center;
+
+  .title {
+    margin-top: 80px;
+  }
+}

@@ -9,15 +9,6 @@ class Api::CoursesController < ApplicationController
     render json: @courses.as_json(include: :photos)
   end
   
-  def search
-    search = params[:search]
-    
-    if search.length > 0
-      @courses = Course.find_by("name ILIKE ?", "%#{search}%")
-      render json: @courses.as_json(include: :photos)
-    end
-  end
-  
   def my_courses
     @courses = Course.where(curator_id: current_user.id)
     
@@ -93,7 +84,6 @@ class Api::CoursesController < ApplicationController
       :free_parking,
       :camping,
       :dedicated_property,
-      :search,
       photos_attributes: [
         :uploader_id,
         :url

@@ -26,7 +26,7 @@ describe("Disc Golf Course index and search", () => {
     const { getByText } = render(<App />);
 
     // Clicking the 'Courses' link in the navbar takes us to an index of all courses.
-    fireEvent.click(getByText("Courses"));
+    fireEvent.click(getByText("All Courses"));
     await waitFor(() => {
       expect(screen.getByText("Skeleton Peak"));
       expect(screen.getByText("Tanzania, CO"));

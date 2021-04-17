@@ -44,6 +44,7 @@ describe("Disc Golf Courses", () => {
     fireEvent.click(getByText("Sign In"));
     await waitFor(() => {
       expect(screen.getByText("Dashboard"));
+      expect(screen.getByText("Create Course"));
     });
     fireEvent.click(getByText("Create Course"));
     await waitFor(() => {

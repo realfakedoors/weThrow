@@ -51,6 +51,12 @@ body {
     top: 62px;
     right: 0;
   }
+  .add-a-friend-button {
+    position: absolute;
+
+    top: 62px;
+    right: 168px;
+  }
   .nav-mail-icon {
     height: 20px;
     margin: 0 6px;
@@ -157,4 +163,21 @@ body {
 
   font-size: 12px;
   line-height: 12px;
+}
+
+.search-users {
+  max-width: 600px;
+  width: 50vw;
+  .search-result {
+    margin-top: 12px;
+    padding: 8px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .username {
+      margin-top: 12px;
+      margin-left: 12px;
+    }
+  }
 }

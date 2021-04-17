@@ -2,7 +2,14 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 
-import { userData, adminData, dmData, msgData, courseData } from "./data";
+import {
+  userData,
+  adminData,
+  dmData,
+  msgData,
+  courseData,
+  friendshipData,
+} from "./data";
 
 const sign = require("jwt-encode");
 const secret = "secret";
@@ -42,5 +49,10 @@ export const server = setupServer(
   // Mocked so we can view the My Courses table in the dashboard.
   rest.get("/api/my_courses", (req, res, ctx) => {
     return res(ctx.json([courseData]));
+  }),
+
+  // Mocked here so our friendships get rendered in the MyFriends table in the dashboard.
+  rest.get("/api/friendships", (req, res, ctx) => {
+    return res(ctx.json(friendshipData));
   })
 );

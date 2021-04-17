@@ -57,18 +57,9 @@ const SiteNav = () => {
 
   let navSiteLinks = (
     <Fragment>
-      <NavLink to="/courses" className="navbar-item">
-        Courses
-      </NavLink>
-      <NavLink to="#" className="navbar-item">
-        Tournaments
-      </NavLink>
-      <NavLink to="#" className="navbar-item">
-        Leagues
-      </NavLink>
-      <NavLink to="#" className="navbar-item">
-        Discs
-      </NavLink>
+      <Link to="/courses" className="button is-warning is-light">
+        All Courses
+      </Link>
       <Link to="#" className="new-scorecard-button button is-success">
         Start a new round
       </Link>
@@ -87,6 +78,12 @@ const SiteNav = () => {
         <Link to="/dashboard" className="button is-warning">
           <img src={auth.userProfilePicture} className="nav-user-icon" />
           {auth.userName}
+        </Link>
+        <Link
+          to="/add_a_friend"
+          className="add-a-friend-button button is-danger is-light"
+        >
+          Add a Friend
         </Link>
         <button
           className="signout-button button is-danger"

@@ -101,7 +101,7 @@ const UploadProfilePicture = () => {
 
   return (
     <div className="upload-profile-picture card">
-      <h3 className={"title is-5 has-text-centered"}>My Profile Picture</h3>
+      <h3 className={"title is-5 has-text-centered"}>Profile Picture</h3>
       <div className="card-image">
         <figure className="image is-128x128">
           {!loading && <img src={auth.userProfilePicture} />}

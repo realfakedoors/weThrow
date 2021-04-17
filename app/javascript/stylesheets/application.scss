@@ -5,11 +5,12 @@
 @import "./direct_messages.scss";
 @import "./form_elements.scss";
 @import "./photos.scss";
+@import "./friendships.scss";
 
 // Bulma color variables
 $aqua: hsl(165, 35%, 50%);
 $army-green: hsl(120, 20%, 50%);
-$washed-yellow: hsl(60, 80%, 50%);
+$washed-yellow: hsl(60, 80%, 75%);
 $burnt-red: hsl(0, 40%, 50%);
 $deep-blue: hsl(240, 50%, 50%);
 $light-blue: hsl(195, 55%, 50%);

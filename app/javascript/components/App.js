@@ -27,6 +27,9 @@ import NewCourse from "./courses/NewCourse";
 import EditCourse from "./courses/EditCourse";
 import CourseSearchResults from "./courses/CourseSearchResults";
 
+import AddAFriend from "./friendships/AddAFriend";
+import SendFriendRequest from "./friendships/SendFriendRequest";
+
 import HomePage from "./HomePage";
 import Dashboard from "./Dashboard";
 
@@ -88,6 +91,12 @@ const App = () => {
               </PrivateRoute>
               <PrivateRoute path="/messages">
                 <UserMessages />
+              </PrivateRoute>
+              <PrivateRoute path="/add_a_friend">
+                <AddAFriend />
+              </PrivateRoute>
+              <PrivateRoute path="/send_friend_request/:id">
+                <SendFriendRequest />
               </PrivateRoute>
               <AdminRoute path="/admin">
                 <AdminMessages />
