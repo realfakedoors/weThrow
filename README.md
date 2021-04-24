@@ -8,16 +8,16 @@ The Final Project in [The Odin Project curriculum.](https://www.theodinproject.c
 
 ## Run it on your machine:
 
-In project directory:
-`bundle install`
-`rake db:create`
-`rake db:migrate`
-In separate terminals:
-`bin/rails s`
-`bin/webpack-dev-server`
-`autorun rails tests with 'bundle exec guard'`
-`autorun react-testing-library with 'yarn test'`
-In a browser window:
+In project directory:  
+`bundle install`  
+`rake db:create`  
+`rake db:migrate`  
+In separate terminals:  
+`bin/rails s`  
+`bin/webpack-dev-server`  
+`autorun rails tests with 'bundle exec guard'`  
+`autorun react-testing-library with 'yarn test'`  
+In a browser window:  
 `open up /localhost:3000 to play around!`
 
 ## Tech Stack:
