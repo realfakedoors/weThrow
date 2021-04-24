@@ -16,7 +16,8 @@ class Api::CoursesController < ApplicationController
   end
   
   def show
-    render json: @course.as_json(include: [:photos, :hole_layouts, :holes, :reviews])
+    @top_ten_rounds = @course.rounds.order(differential: :asc).limit(10)
+    render json: {course: @course.as_json(include: [:photos, :hole_layouts, :holes, :reviews]), top_ten_rounds: @top_ten_rounds}
   end
 
   def create

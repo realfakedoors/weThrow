@@ -13,6 +13,7 @@ import CurrentConditions from "./CurrentConditions";
 import ChangeCurrentConditions from "./ChangeCurrentConditions";
 import CourseDetails from "./CourseDetails";
 import CourseReviews from "./CourseReviews";
+import TopTenRounds from "./TopTenRounds";
 import CuratorControls from "./CuratorControls";
 import HoleLayouts from "./HoleLayouts";
 import AverageRating from "../common/AverageRating";
@@ -25,22 +26,19 @@ const Course = () => {
 
   const [courseData, setCourseData] = useState(null);
   const [currentConditions, setConditions] = useState(null);
+  const [roundData, setRoundData] = useState([]);
 
   useEffect(() => {
     getCourseData();
   }, []);
 
-  useEffect(() => {
-    if (courseData) {
-      setConditions(courseData.current_conditions);
-    }
-  }, [courseData]);
-
   async function getCourseData() {
     await axios
       .get(`/api/courses/${id}`)
       .then((response) => {
-        setCourseData(response.data);
+        setCourseData(response.data.course);
+        setConditions(response.data.course.current_conditions);
+        setRoundData(response.data.top_ten_rounds);
       })
       .catch((err) => console.error(err));
   }
@@ -67,7 +65,7 @@ const Course = () => {
                 mean={courseData.avg_rating}
                 numberOfRatings={courseData.reviews.length}
               />
-              <Difficulty />
+              <Difficulty avgRound={courseData.avg_round} />
             </div>
             <Tags
               cartFriendly={courseData.cart_friendly}
@@ -108,6 +106,7 @@ const Course = () => {
               courseName={courseData.name}
               getCourseData={() => getCourseData()}
             />
+            <TopTenRounds roundData={roundData} />
             <CuratorControls
               courseName={courseData.name}
               curatorId={courseData.curator_id}

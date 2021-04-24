@@ -6,6 +6,7 @@
 @import "./form_elements.scss";
 @import "./photos.scss";
 @import "./friendships.scss";
+@import "./rounds.scss";
 
 // Bulma color variables
 $aqua: hsl(165, 35%, 50%);
@@ -21,5 +22,8 @@ $warning: $washed-yellow;
 $danger: $burnt-red;
 $link: $deep-blue;
 $info: $light-blue;
+
+// Bulma components
+$navbar-breakpoint: 500px;
 
 @import "~bulma";

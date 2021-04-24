@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   
   namespace :api do
     resources :courses, only: [:index, :show, :create, :update, :destroy]
+    resources :rounds, only: [:index, :create, :destroy]
     resources :direct_messages, only: [:index, :create, :destroy]
     resources :friendships, only: [:index, :create, :update, :destroy]
     resources :messages, only: [:update, :create, :destroy]

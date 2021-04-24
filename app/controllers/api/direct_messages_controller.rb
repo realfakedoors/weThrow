@@ -1,6 +1,6 @@
 class Api::DirectMessagesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_direct_message, only: [:update, :destroy]
+  before_action :set_direct_message, only: [:destroy]
   before_action :correct_user, only: [:destroy]
   
   def index

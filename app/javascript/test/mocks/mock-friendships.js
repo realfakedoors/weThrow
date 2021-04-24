@@ -8,6 +8,7 @@ import {
   dmData,
   friendshipData,
   courseData,
+  myRoundData,
 } from "./data";
 
 const sign = require("jwt-encode");
@@ -18,16 +19,8 @@ export const server = setupServer(
     return res(ctx.set("Authorization", userJWT));
   }),
 
-  rest.get("/api/my_courses", (req, res, ctx) => {
-    return res(ctx.json([courseData]));
-  }),
-
   rest.get("/api/direct_messages", (req, res, ctx) => {
     return res(ctx.json(dmData));
-  }),
-
-  rest.get("/api/friendships", (req, res, ctx) => {
-    return res(ctx.json(friendshipData));
   }),
 
   rest.get("/api/search_users", (req, res, ctx) => {
@@ -36,5 +29,18 @@ export const server = setupServer(
 
   rest.delete("/api/friendships/:id", (req, res, ctx) => {
     return res(ctx.json({}));
+  }),
+
+  // Mocked so we can view the My Courses, Friendships and My Rounds tables in the dashboard.
+  rest.get("/api/my_courses", (req, res, ctx) => {
+    return res(ctx.json([courseData.course]));
+  }),
+
+  rest.get("/api/rounds", (req, res, ctx) => {
+    return res(ctx.json(myRoundData));
+  }),
+
+  rest.get("/api/friendships", (req, res, ctx) => {
+    return res(ctx.json(friendshipData));
   })
 );

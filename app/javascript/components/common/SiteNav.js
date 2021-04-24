@@ -57,12 +57,9 @@ const SiteNav = () => {
 
   let navSiteLinks = (
     <Fragment>
-      <Link to="/courses" className="button is-warning is-light">
+      <NavLink to="/courses" className="navbar-item">
         All Courses
-      </Link>
-      <Link to="#" className="new-scorecard-button button is-success">
-        Start a new round
-      </Link>
+      </NavLink>
     </Fragment>
   );
 
@@ -84,6 +81,9 @@ const SiteNav = () => {
           className="add-a-friend-button button is-danger is-light"
         >
           Add a Friend
+        </Link>
+        <Link to="/shoot" className="new-scorecard-button button is-success">
+          Start a new round
         </Link>
         <button
           className="signout-button button is-danger"
@@ -134,7 +134,9 @@ const SiteNav = () => {
             src="/weThrowLogo.png"
             alt="An app for disc golfers."
           />
-          <p className="navbar-company-name">weThrow</p>
+          <p className="navbar-company-name" data-testid={"company-name"}>
+            weThrow
+          </p>
         </Link>
       </div>
       <div className="navbar-menu">

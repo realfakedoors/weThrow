@@ -10,6 +10,7 @@ rocko:
   email: rocko1@o-town.com
   encrypted_password: spunky
 filburt:
+  id: 0
   username: filbski
   name: Filburt
   email: filbski@o-town.com

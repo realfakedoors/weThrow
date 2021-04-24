@@ -30,6 +30,8 @@ import CourseSearchResults from "./courses/CourseSearchResults";
 import AddAFriend from "./friendships/AddAFriend";
 import SendFriendRequest from "./friendships/SendFriendRequest";
 
+import Round from "./rounds/Round";
+
 import HomePage from "./HomePage";
 import Dashboard from "./Dashboard";
 
@@ -71,6 +73,9 @@ const App = () => {
               <Route path="/help">
                 <Help />
               </Route>
+              <PrivateRoute path="/shoot">
+                <Round />
+              </PrivateRoute>
               <PrivateRoute path="/new_course">
                 <NewCourse />
               </PrivateRoute>

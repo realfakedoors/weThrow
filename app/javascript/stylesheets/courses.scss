@@ -20,21 +20,28 @@
     align-items: flex-end;
   }
   .course-difficulty {
-    width: 192px;
+    max-width: 192px;
     height: 130px;
 
     margin-top: 6px;
     margin-left: 8px;
 
-    padding: 4px 0;
+    padding: 4px 8px;
     border: 2px solid black;
     border-radius: 6px;
 
     display: flex;
     flex-direction: column;
     align-items: center;
-    .subtitle {
-      margin-top: 4px;
+    justify-content: center;
+    .differential {
+      font-size: 48px;
+      font-weight: 600;
+      line-height: 48px;
+    }
+    .challenge-level {
+      font-size: 22px;
+      font-weight: 600;
     }
   }
   .course-description,
@@ -262,4 +269,16 @@
 
   font-weight: bolder;
   font-size: 16px;
+}
+
+.top-ten-rounds {
+  .rank-icon {
+    height: 44px;
+    width: 44px;
+    text-align: center;
+    font-weight: bold;
+  }
+  .table {
+    margin: 0 auto;
+  }
 }

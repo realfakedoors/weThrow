@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_14_144048) do
+ActiveRecord::Schema.define(version: 2021_04_23_065408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 2021_04_14_144048) do
     t.boolean "dedicated_property"
     t.string "curator_name"
     t.float "avg_rating"
+    t.float "avg_round"
     t.index ["curator_id"], name: "index_courses_on_curator_id"
   end
 
@@ -112,6 +113,17 @@ ActiveRecord::Schema.define(version: 2021_04_14_144048) do
     t.index ["uploader_id"], name: "index_photos_on_uploader_id"
   end
 
+  create_table "recorded_holes", force: :cascade do |t|
+    t.bigint "round_id", null: false
+    t.string "name"
+    t.integer "par"
+    t.integer "distance"
+    t.integer "score"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["round_id"], name: "index_recorded_holes_on_round_id"
+  end
+
   create_table "reviews", force: :cascade do |t|
     t.bigint "course_id", null: false
     t.bigint "user_id", null: false
@@ -123,6 +135,21 @@ ActiveRecord::Schema.define(version: 2021_04_14_144048) do
     t.string "user_profile_picture"
     t.index ["course_id"], name: "index_reviews_on_course_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
+  create_table "rounds", force: :cascade do |t|
+    t.bigint "course_id", null: false
+    t.bigint "user_id", null: false
+    t.integer "score"
+    t.text "layout_name"
+    t.integer "total_distance"
+    t.integer "total_par"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "differential"
+    t.string "golfer_name"
+    t.index ["course_id"], name: "index_rounds_on_course_id"
+    t.index ["user_id"], name: "index_rounds_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -152,6 +179,9 @@ ActiveRecord::Schema.define(version: 2021_04_14_144048) do
   add_foreign_key "holes", "hole_layouts"
   add_foreign_key "messages", "users", column: "author_id"
   add_foreign_key "photos", "users", column: "uploader_id"
+  add_foreign_key "recorded_holes", "rounds"
   add_foreign_key "reviews", "courses"
   add_foreign_key "reviews", "users"
+  add_foreign_key "rounds", "courses"
+  add_foreign_key "rounds", "users"
 end

@@ -5,6 +5,7 @@ class User < ApplicationRecord
          
   has_one :profile_picture, class_name: "Photo", as: :photo_attachable, dependent: :destroy
   
+  has_many :rounds
   has_many :courses
   has_many :direct_messages
   has_many :messages, through: :direct_messages

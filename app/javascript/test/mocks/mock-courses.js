@@ -8,6 +8,7 @@ import {
   dmData,
   reviewData,
   friendshipData,
+  myRoundData,
 } from "./data";
 
 const sign = require("jwt-encode");
@@ -19,19 +20,23 @@ export const server = setupServer(
   }),
 
   rest.get("/api/my_courses", (req, res, ctx) => {
-    return res(ctx.json([courseData]));
+    return res(ctx.json([courseData.course]));
   }),
 
   rest.get("/api/courses", (req, res, ctx) => {
-    return res(ctx.json([courseData]));
+    return res(ctx.json([courseData.course]));
   }),
 
   rest.get("/api/search_courses", (req, res, ctx) => {
-    return res(ctx.json(courseData));
+    return res(ctx.json(courseData.course));
   }),
 
   rest.get("/api/courses/:id", (req, res, ctx) => {
     return res(ctx.json(courseData));
+  }),
+
+  rest.get("/api/rounds", (req, res, ctx) => {
+    return res(ctx.json(myRoundData));
   }),
 
   rest.post("/api/courses", (req, res, ctx) => {
@@ -47,12 +52,12 @@ export const server = setupServer(
   }),
 
   rest.post("/api/reviews", (req, res, ctx) => {
-    courseData.reviews.push(reviewData);
+    courseData.course.reviews.push(reviewData);
     return res(ctx.json(courseData));
   }),
 
   rest.delete("/api/reviews/:id", (req, res, ctx) => {
-    courseData.reviews.pop(reviewData);
+    courseData.course.reviews.pop(reviewData);
     return res(ctx.json(courseData));
   }),
 
@@ -61,7 +66,15 @@ export const server = setupServer(
     return res(ctx.json(dmData));
   }),
 
-  // Mocked here so our friendships get rendered in the MyFriends table in the dashboard.
+  // Mocked so we can view the My Courses, Friendships and My Rounds tables in the dashboard.
+  rest.get("/api/my_courses", (req, res, ctx) => {
+    return res(ctx.json([courseData.course]));
+  }),
+
+  rest.get("/api/rounds", (req, res, ctx) => {
+    return res(ctx.json(myRoundData));
+  }),
+
   rest.get("/api/friendships", (req, res, ctx) => {
     return res(ctx.json(friendshipData));
   })

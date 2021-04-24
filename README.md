@@ -1,10 +1,24 @@
 # weThrow
 
-A full-stack app for disc golfers to track scores, find courses, share thoughts and join tournaments & leagues.
+A full-stack app for disc golfers to track their scores, find courses, share thoughts and play rounds together.
 
-Showcases a culmination of full-stack skills and the ability to build a complex project with a lot of functionality and utilization of 3rd party APIs.
+Showcases a culmination of full-stack skills and the ability to build a complex project with a lot of functionality, wide utilization of third-party APIs, and a well-crafted user experience.
 
 The Final Project in [The Odin Project curriculum.](https://www.theodinproject.com/courses/javascript/lessons/final-project-116ff273-1e55-4055-bd7f-146c17d0ec9c)
+
+## Run it on your machine:
+
+In project directory:
+`bundle install`
+`rake db:create`
+`rake db:migrate`
+In separate terminals:
+`bin/rails s`
+`bin/webpack-dev-server`
+`autorun rails tests with 'bundle exec guard'`
+`autorun react-testing-library with 'yarn test'`
+In a browser window:
+`open up /localhost:3000 to play around!`
 
 ## Tech Stack:
 

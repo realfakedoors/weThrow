@@ -27,7 +27,9 @@ const MyCoursesTable = () => {
             return (
               <tr key={i}>
                 <td>
-                  <Link to={`/courses/${course.id}`}>{course.name}</Link>
+                  <Link to={`/courses/${course.id}`} data-testid={course.name}>
+                    {course.name}
+                  </Link>
                 </td>
                 <td>
                   {course.city}, {course.state}

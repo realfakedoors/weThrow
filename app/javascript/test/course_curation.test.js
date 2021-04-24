@@ -180,7 +180,7 @@ describe("Disc Golf Courses", () => {
       expect(screen.getByText("1215 Kilimanjaro Lane"));
       expect(screen.getByText("Tanzanian Disc Grabbers"));
       expect(screen.getByText("Year-Round"));
-      expect(screen.getByText("Buzzard's Perch"));
+      expect(screen.getAllByText("Buzzard's Perch"));
     });
 
     // Users can leave course reviews.
@@ -231,6 +231,7 @@ describe("Disc Golf Courses", () => {
     });
 
     // Curators can view their courses in their dashboard.
+    fireEvent.click(screen.getByTestId(/company-name/));
     fireEvent.click(getByText("Rocko"));
     await waitFor(() => {
       expect(screen.getByText("Dashboard"));
@@ -240,7 +241,7 @@ describe("Disc Golf Courses", () => {
     });
 
     // Curators can delete their courses.
-    fireEvent.click(getByText("Skeleton Peak"));
+    fireEvent.click(screen.getByTestId(/Skeleton Peak/));
     await waitFor(() => {
       expect(
         screen.getByText(

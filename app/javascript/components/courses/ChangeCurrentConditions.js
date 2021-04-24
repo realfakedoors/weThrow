@@ -22,7 +22,7 @@ const ChangeCurrentConditions = ({
         .then((response) => {
           setConditions(response.data.current_conditions);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.error(err));
     } else return;
   }
 

@@ -102,9 +102,9 @@ body {
 
 .dashboard-controls {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-evenly;
-  .my-courses-table {
-  }
+  align-items: flex-start;
 }
 
 .loading-screen {

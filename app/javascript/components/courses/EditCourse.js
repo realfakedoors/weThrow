@@ -15,14 +15,14 @@ const EditCourse = () => {
   useEffect(() => {
     if (auth.userId) {
       axios.get(`/api/courses/${id}`).then((res) => {
-        const curatorId = res.data.curator_id;
+        const curatorId = res.data.course.curator_id;
         if (curatorId === parseInt(auth.userId) || auth.adminStatus) {
-          const courseName = res.data.name;
+          const courseName = res.data.course.name;
           setDisplay(
             <CourseForm
               title={`Edit ${courseName}`}
               buttonText={`Update ${courseName}`}
-              prepopulatedCourseData={res.data}
+              prepopulatedCourseData={res.data.course}
             />
           );
         } else {

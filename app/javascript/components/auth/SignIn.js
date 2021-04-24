@@ -25,7 +25,9 @@ const SignIn = () => {
     } else if (!validations.passwordIsPresent(password)) {
       setErrorMsg("Enter your password.");
     } else if (!validations.passwordIsCorrectLength(password)) {
-      setErrorMsg("That's not a valid password! Passwords should be betweeen 6 and 128 characters.");
+      setErrorMsg(
+        "That's not a valid password! Passwords should be betweeen 6 and 128 characters."
+      );
     } else {
       return true;
     }
@@ -45,7 +47,7 @@ const SignIn = () => {
         })
         .catch((err) => {
           setErrorMsg("Invalid credentials, try again!");
-          console.log(err);
+          console.error(err);
         });
     }
   }

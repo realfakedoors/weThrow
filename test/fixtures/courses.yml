@@ -1,0 +1,23 @@
+grizzly_gulch:
+  name: Grizzly Gulch
+  curator_id: 0
+  description: Dangerous And Unsafe
+  current_conditions: Unplayable
+  public_availability: Public
+  seasonality: Year-Round
+  lat: 39.9308
+  lng: -104.8700
+  address: 26412 Campground Rd
+  city: Grizzly County
+  state: MT
+  zip: 26416
+  course_designer: Grizzly Adams
+  teepads: Log
+  baskets: Log
+  established: 1990
+  pet_policy: Allowed
+  public_restrooms: true
+  cart_friendly: true
+  free_parking: true
+  camping: true
+  dedicated_property: true

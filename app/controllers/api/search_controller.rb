@@ -3,7 +3,7 @@ class Api::SearchController < ApplicationController
   
   def courses
     @courses = Course.find_by("name ILIKE ?", "%#{@search}%")
-    render json: @courses.as_json(include: :photos)
+    render json: @courses.as_json(include: [:photos, :hole_layouts, :holes])
   end
 
   def users

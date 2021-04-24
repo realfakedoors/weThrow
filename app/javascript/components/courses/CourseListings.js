@@ -12,18 +12,18 @@ const CourseListings = ({ courses, title }) => {
       let coursePhotoUrl = "/default_user.svg";
       if (course.photos.length > 0) {
         coursePhotoUrl = course.photos[0].url;
-        return (
-          <CourseListing
-            key={i}
-            courseId={course.id}
-            name={course.name}
-            city={course.city}
-            state={course.state}
-            photoUrl={coursePhotoUrl}
-            currentConditions={course.current_conditions}
-          />
-        );
       }
+      return (
+        <CourseListing
+          key={i}
+          courseId={course.id}
+          name={course.name}
+          city={course.city}
+          state={course.state}
+          photoUrl={coursePhotoUrl}
+          currentConditions={course.current_conditions}
+        />
+      );
     });
     setListings(allListings);
   }, [courses]);

@@ -61,7 +61,7 @@ const SignUp = () => {
         })
         .catch((err) => {
           setErrorMsg("Unable to sign up. Try again!");
-          console.log(err);
+          console.error(err);
         });
     }
   }

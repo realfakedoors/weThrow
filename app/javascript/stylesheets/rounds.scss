@@ -1,0 +1,225 @@
+.new-round {
+  min-height: 75vh;
+  max-width: 980px;
+  margin: 0 auto;
+  .title {
+    margin-top: 50px;
+    font-size: 70px;
+  }
+}
+
+.choose-golfers {
+  position: relative;
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  .currently-selected-golfers {
+    margin-bottom: 120px;
+  }
+  .friends-list,
+  .currently-selected-golfers {
+    height: 45%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .golfer {
+      width: 200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      margin: 8px;
+      border: 2px solid #a6a6a6;
+      padding: 24px 16px;
+      border-radius: 12px;
+    }
+  }
+}
+
+.search-results {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .result {
+    max-width: 600px;
+    margin-bottom: 12px;
+    padding: 12px;
+    padding-bottom: 6px;
+    border: 2px solid #a6a6a6;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    .course-image img {
+      height: 64px;
+      width: 64px;
+    }
+  }
+}
+
+.select-course {
+  position: relative;
+  min-height: 75vh;
+  .hole-layouts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .continue-button {
+      bottom: -80px;
+    }
+    .subtitle.is-3 {
+      width: 100%;
+    }
+    .layout {
+      align-self: flex-start;
+      width: 48%;
+      padding: 1%;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+    }
+  }
+}
+
+.continue-button {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  .next-stage-button {
+    height: 70px;
+    font-weight: 600;
+    font-size: 22px;
+  }
+}
+
+.scorecard {
+  position: relative;
+  .hole-info {
+    width: 64px;
+    .name {
+      font-weight: bolder;
+    }
+  }
+  .golfer-avatar {
+    min-width: 240px;
+    display: flex;
+    align-items: center;
+    .image {
+      margin-right: 8px;
+    }
+  }
+  .total-col-header {
+    vertical-align: bottom;
+    padding-bottom: 12px;
+    min-width: 60px;
+  }
+  .scoreable-hole {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .score {
+      height: 44px;
+      width: 44px;
+
+      appearance: none;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      text-align-last: center;
+      -moz-text-align-last: center;
+    }
+  }
+  .total-score {
+    text-align: center;
+    vertical-align: middle;
+  }
+}
+
+.recorded-round {
+  position: relative;
+  min-height: 75vh;
+  overflow-x: scroll;
+  .continue-button {
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    bottom: 10px;
+    left: 10px;
+  }
+}
+
+.golfer-round {
+  display: flex !important;
+  align-items: center;
+  .golfer-info {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 35%;
+    .image {
+      margin-right: 8px;
+    }
+  }
+  .differential {
+    flex: 1;
+    margin: 0 16px;
+    font-size: 38px;
+    font-weight: bolder;
+  }
+  .scorecard {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 8px 16px;
+    .hole {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-right: 4px;
+      .score {
+        padding: 0 8px;
+
+        border: 2px solid #777;
+        border-radius: 4px;
+        font-weight: bolder;
+        font-size: 24px;
+      }
+    }
+  }
+  .choose-to-save-round {
+    height: 24px;
+    min-width: 140px;
+  }
+}
+
+.post-round {
+  position: relative;
+  min-height: 70vh;
+  .subtitle,
+  .title {
+    text-align: center;
+    width: 100%;
+  }
+  .continue-button {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+}
+
+.submit-rounds {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  .back-to-course-button {
+    margin-top: 40px;
+  }
+}
+
+.my-rounds {
+  max-height: 400px;
+  overflow-y: scroll;
+}

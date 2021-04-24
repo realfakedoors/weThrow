@@ -1,12 +1,40 @@
 import React from "react";
 
-const Difficulty = () => {
+import {
+  colorByDifficulty,
+  backgroundByDifficulty,
+  adjectiveByDifficulty,
+} from "../common/color-by-difficulty";
+
+const Difficulty = ({ avgRound }) => {
+  function displayDifferential(round) {
+    if (round > 0) {
+      return `+${round}`;
+    } else if (round === 0) {
+      return "E";
+    } else {
+      return round;
+    }
+  }
   return (
-    <div className={"course-difficulty has-background-danger-light"}>
-      <div className={"title is-1 has-text-danger"}>77 (+12)</div>
-      <div className={"subtitle is-7 pt-2"}>Average Round</div>
-      <div className={"challenge-level title is-5 has-text-danger"}>
-        Very Challenging
+    <div
+      className={"course-difficulty"}
+      style={{ backgroundColor: backgroundByDifficulty(avgRound) }}
+    >
+      {avgRound !== null && (
+        <div className={"difficulty-title"}>Average Round</div>
+      )}
+      <div
+        className={"differential"}
+        style={{ color: colorByDifficulty(avgRound) }}
+      >
+        {displayDifferential(avgRound)}
+      </div>
+      <div
+        className={"challenge-level"}
+        style={{ color: colorByDifficulty(avgRound) }}
+      >
+        {adjectiveByDifficulty(avgRound)}
       </div>
     </div>
   );

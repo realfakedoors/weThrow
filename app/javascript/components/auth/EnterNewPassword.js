@@ -45,7 +45,7 @@ const EnterNewPassword = () => {
         })
         .catch((err) => {
           setErrorMsg("Unable to change password.");
-          console.log(err);
+          console.error(err);
         });
     }
   }

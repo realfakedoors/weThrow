@@ -4,6 +4,7 @@ class Course < ApplicationRecord
   has_many :holes, through: :hole_layouts, dependent: :destroy
   has_many :photos, as: :photo_attachable, dependent: :destroy
   has_many :reviews, dependent: :destroy
+  has_many :rounds
   
   validates :name, presence: true, length: { in: 6..75 }
   validates :description, length: { maximum: 600 }
@@ -20,5 +21,10 @@ class Course < ApplicationRecord
   def avg_rating
     return 0 if self.reviews.size == 0
     self.reviews.map{|review| review[:rating]}.sum / self.reviews.count
+  end
+  
+  def avg_round
+    return nil if self.rounds.size == 0
+    self.rounds.map{|round| round[:differential]}.sum / self.rounds.count
   end
 end

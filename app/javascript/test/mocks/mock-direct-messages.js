@@ -9,6 +9,7 @@ import {
   msgData,
   courseData,
   friendshipData,
+  myRoundData,
 } from "./data";
 
 const sign = require("jwt-encode");
@@ -46,12 +47,15 @@ export const server = setupServer(
     return res(ctx.json({}));
   }),
 
-  // Mocked so we can view the My Courses table in the dashboard.
+  // Mocked so we can view the My Courses, Friendships and My Rounds tables in the dashboard.
   rest.get("/api/my_courses", (req, res, ctx) => {
     return res(ctx.json([courseData]));
   }),
 
-  // Mocked here so our friendships get rendered in the MyFriends table in the dashboard.
+  rest.get("/api/rounds", (req, res, ctx) => {
+    return res(ctx.json(myRoundData));
+  }),
+
   rest.get("/api/friendships", (req, res, ctx) => {
     return res(ctx.json(friendshipData));
   })

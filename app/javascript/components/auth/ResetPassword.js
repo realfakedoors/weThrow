@@ -40,7 +40,7 @@ const ResetPassword = () => {
         })
         .catch((err) => {
           setErrorMsg("Invalid email. Try again!");
-          console.log(err);
+          console.error(err);
         });
     }
   }
