@@ -19,10 +19,8 @@ const Review = ({ reviewData, refreshCourse }) => {
     }
   });
 
-  async function deleteReview() {
-    event.preventDefault();
-
-    await axios
+  function deleteReview() {
+    axios
       .delete(`/api/reviews/${reviewData.id}`, {
         headers: { Authorization: auth.userToken },
       })

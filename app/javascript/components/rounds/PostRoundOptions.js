@@ -46,8 +46,6 @@ const PostRoundOptions = ({ golfers, roundData, setRoundData, setStage }) => {
   }
 
   function submitRounds() {
-    event.preventDefault();
-
     const roundsToSubmit = golferRounds.filter((round) => {
       return (
         document.querySelector(`input[name="${round.id}-choice"]:checked`)

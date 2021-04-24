@@ -14,12 +14,10 @@ const SelectCourse = ({ setCourse, setStage }) => {
   const [searchResults, setSearchResults] = useState([]);
   const [errorMsg, setErrorMsg] = useState("");
 
-  async function searchCourses() {
-    event.preventDefault();
-
+  function searchCourses() {
     const searchTerms = document.getElementById("search-courses").value;
     if (searchTerms !== "") {
-      await axios
+      axios
         .get(`/api/search_courses/`, {
           params: { search: searchTerms },
         })
@@ -63,7 +61,7 @@ const SelectCourse = ({ setCourse, setStage }) => {
             placeholder={"Search for disc golf courses..."}
           />
           <SubmitButton
-            clickFunction={() => searchCourses()}
+            clickFunction={(e) => searchCourses(e)}
             color={"is-success"}
             displayText={"Search Courses"}
           />
