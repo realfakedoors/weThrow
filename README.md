@@ -1,5 +1,7 @@
 # weThrow
 
+# Check it out [live on Heroku!](https://wethrow.herokuapp.com/)
+
 A full-stack app for disc golfers to track their scores, find courses, share thoughts and play rounds together.
 
 Showcases a culmination of full-stack skills and the ability to build a complex project with a lot of functionality, wide utilization of third-party APIs, and a well-crafted user experience.
