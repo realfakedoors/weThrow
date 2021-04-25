@@ -53,8 +53,11 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   config.action_mailer.raise_delivery_errors = false
   
+  # ActionMailer performs deliveries no matter what.
+  config.action_mailer.perform_deliveries = true
+  
   # Define a default mailer host.
-  config.action_mailer.default_url_options = { host: 'https://wethrow.herokuapp.com/', port: 80 }
+  config.action_mailer.default_options = { from: 'weThrow' }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
