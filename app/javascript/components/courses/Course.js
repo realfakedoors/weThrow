@@ -44,7 +44,7 @@ const Course = () => {
   }
 
   function userIsAuthorized() {
-    if (courseData.curator_id === auth.userId || auth.adminStatus) {
+    if (courseData.curator_id === parseInt(auth.userId) || auth.adminStatus) {
       return true;
     } else {
       return false;
