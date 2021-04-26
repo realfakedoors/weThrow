@@ -48,13 +48,21 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "weThrow_production"
 
   config.action_mailer.perform_caching = false
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    authentication:       :plain,
+    enable_starttls_auto: true,
+    address:              'smtp.sendgrid.net',
+    port:                 587,
+    user_name:            'apikey',
+    password:             SENDGRID_API_KEY,
+    domain:               'https://wethrow.herokuapp.com/'
+  }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  config.action_mailer.raise_delivery_errors = false
-  
-  # ActionMailer performs deliveries no matter what.
-  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = false  
   
   # Define a default mailer host.
   config.action_mailer.default_url_options = { host: 'https://wethrow.herokuapp.com/' }
