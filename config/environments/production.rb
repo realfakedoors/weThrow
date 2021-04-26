@@ -57,7 +57,7 @@ Rails.application.configure do
     port:                 587,
     user_name:            'apikey',
     password:             ENV['SENDGRID_API_KEY'],
-    domain:               'https://wethrow.herokuapp.com/'
+    domain:               'wethrow.herokuapp.com'
   }
 
   # Ignore bad email addresses and do not raise email delivery errors.
@@ -65,7 +65,7 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
   
   # Define a default mailer host.
-  config.action_mailer.default_url_options = { host: 'https://wethrow.herokuapp.com/', protocol: 'https' }
+  config.action_mailer.default_url_options = { host: 'wethrow.herokuapp.com', protocol: 'https' }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
