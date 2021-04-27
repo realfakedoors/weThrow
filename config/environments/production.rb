@@ -47,22 +47,16 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "weThrow_production"
 
-  config.action_mailer.perform_caching = false
-  config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     authentication:       :plain,
     enable_starttls_auto: true,
-    address:              ENV['MAILGUN_SMTP_SERVER'],
-    port:                 ENV['MAILGUN_SMTP_PORT'],
-    user_name:            ENV['MAILGUN_SMTP_LOGIN'],
-    password:             ENV['MAILGUN_SMTP_PASSWORD'],
+    address:              'smtp.gmail.com',
+    port:                 587,
+    user_name:            ENV['GMAIL_USERNAME'],
+    password:             ENV['GMAIL_APP_PASSWORD'],
     domain:               'wethrow.herokuapp.com'
   }
-
-  # Ignore bad email addresses and do not raise email delivery errors.
-  # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  config.action_mailer.raise_delivery_errors = true
   
   # Define a default mailer host.
   config.action_mailer.default_url_options = { host: 'wethrow.herokuapp.com', protocol: 'https' }
