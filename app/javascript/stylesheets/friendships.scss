@@ -21,49 +21,21 @@
 }
 
 .add-a-friend {
-  .add-a-friend-title {
-    font-size: 80px;
-    font-weight: 1000;
-    text-align: center;
-    flex: 1;
-    width: 100%;
-  }
+  max-width: 600px;
+  margin: 32px auto;
   .options {
-    width: 100%;
-    margin: 40px 0 80px;
+    margin: 40px 0;
 
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
     .option-button {
-      height: 30vh;
-      width: 20vw;
-      padding: 20px;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      border: 2px solid #aaa;
-      border-radius: 15px;
-      font-size: 44px;
-      font-weight: 1000;
-      cursor: pointer;
-      box-shadow: 6px 8px 8px #999;
-      text-shadow: 2px 2px 4px black;
+      max-width: 330px;
+      margin-top: 16px;
+      height: 54px;
     }
-    .option-button:nth-child(1) {
-      background-color: hsl(240, 50%, 50%);
-      color: white;
-    }
-    .option-button:nth-child(2) {
-      background-color: hsl(0, 40%, 50%);
-      color: white;
-    }
-    .option-button:nth-child(3) {
-      background-color: hsl(60, 80%, 75%);
-      color: white;
+    .search-users {
+      width: 300px;
     }
   }
 }
@@ -77,5 +49,21 @@
 
   .title {
     margin-top: 80px;
+  }
+
+  .button {
+    margin-top: 20px;
+  }
+}
+
+@media only screen and (max-width: 815px) {
+  .send-friend-request {
+    margin-top: 40px;
+    width: 95vw;
+    height: auto;
+
+    .title {
+      margin-top: 0px;
+    }
   }
 }

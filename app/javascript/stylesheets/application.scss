@@ -9,21 +9,21 @@
 @import "./rounds.scss";
 
 // Bulma color variables
-$aqua: hsl(165, 35%, 50%);
-$army-green: hsl(120, 20%, 50%);
-$washed-yellow: hsl(60, 80%, 75%);
-$burnt-red: hsl(0, 40%, 50%);
-$deep-blue: hsl(240, 50%, 50%);
-$light-blue: hsl(195, 55%, 50%);
+$aqua: hsl(160, 100%, 40%);
+$maximum-green: hsl(101, 48%, 37%);
+$mustard: hsl(48, 93%, 64%);
+$deep-chestnut: hsl(0, 40%, 50%);
+$liberty: hsl(240, 31%, 48%);
+$pacific-blue: hsl(192, 49%, 52%);
 
 $primary: $aqua;
-$success: $army-green;
-$warning: $washed-yellow;
-$danger: $burnt-red;
-$link: $deep-blue;
-$info: $light-blue;
+$success: $maximum-green;
+$warning: $mustard;
+$danger: $deep-chestnut;
+$link: $liberty;
+$info: $pacific-blue;
 
 // Bulma components
-$navbar-breakpoint: 500px;
+$navbar-breakpoint: 0;
 
 @import "~bulma";

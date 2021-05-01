@@ -12,6 +12,7 @@ body {
 
 .site-nav {
   position: absolute;
+  flex-wrap: wrap;
   top: 0;
 
   padding: 6px 0;
@@ -100,11 +101,45 @@ body {
   background-color: transparent;
 }
 
+.dashboard {
+  background-color: #d9d9d9 !important;
+}
+
 .dashboard-controls {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: flex-start;
+  .box,
+  .card {
+    height: 400px;
+    overflow-y: auto;
+    min-width: 364px;
+  }
+  .card {
+    border-radius: 6px;
+    box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1),
+      0 0px 0 1px rgba(10, 10, 10, 0.02);
+  }
+  .my-rounds {
+    .title {
+      padding-left: 12px;
+    }
+    table {
+      width: 100%;
+      td {
+        max-width: 100px;
+        padding: 8px 4px;
+
+        text-overflow: ellipsis;
+        vertical-align: middle;
+        text-align: center;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+    }
+    padding: 20px 8px;
+  }
 }
 
 .loading-screen {
@@ -179,5 +214,83 @@ body {
       margin-top: 12px;
       margin-left: 12px;
     }
+  }
+}
+
+@media only screen and (max-width: 815px) {
+  #app-body {
+    padding: 0;
+    min-height: 60vh;
+  }
+
+  .dashboard {
+    border-radius: 0 !important;
+  }
+
+  .dashboard-controls {
+    .card,
+    .box {
+      margin-top: 25px;
+      margin-bottom: 0 !important;
+      min-height: 0;
+      min-width: 335px;
+    }
+  }
+
+  .navbar-end {
+    position: relative;
+    width: 100vw;
+
+    margin-top: 8px;
+    flex-wrap: wrap;
+    justify-content: center !important;
+    .button,
+    .navbar-item {
+      width: 45vw;
+      margin: 3px 5px;
+    }
+    .navbar-item {
+      justify-content: center;
+      order: 1;
+    }
+  }
+
+  .my-friends > .table {
+    min-width: 100% !important;
+  }
+
+  .add-a-friend-button,
+  .new-scorecard-button {
+    position: relative !important;
+    right: 0 !important;
+    top: 0 !important;
+  }
+  .home-page {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    .search-courses {
+      max-width: 95vw;
+      margin: 25% 0;
+      .controls {
+        width: 100%;
+        flex-wrap: wrap;
+        .field {
+          margin-right: 0;
+          width: 100%;
+          .button {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+  .search-users {
+    .search-result {
+      flex-direction: column;
+    }
+  }
+  .footer {
+    display: none;
   }
 }

@@ -47,7 +47,9 @@ const MyRounds = () => {
                 <td>
                   <small className={"uppercase"}>{round.layout_name}</small>
                 </td>
-                <td>{showDifferential(round.differential)}</td>
+                <td>
+                  <strong>{showDifferential(round.differential)}</strong>
+                </td>
               </tr>
             );
           })

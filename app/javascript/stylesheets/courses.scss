@@ -205,6 +205,7 @@
   max-width: 440px;
   min-width: 30%;
   height: 82vh;
+  overflow: auto;
 
   z-index: 2;
   .search-courses {
@@ -280,5 +281,131 @@
   }
   .table {
     margin: 0 auto;
+  }
+}
+
+@media only screen and (max-width: 815px) {
+  .course-index {
+    display: flex;
+    flex-direction: column;
+  }
+  .course-listings {
+    height: 50vh;
+    margin-bottom: 0px !important;
+    .listing {
+      .course-photo {
+        height: 44px;
+        width: 44px;
+      }
+      .content {
+        .basic-info {
+          strong,
+          .uppercase {
+            font-size: 0.9rem !important;
+          }
+        }
+      }
+    }
+  }
+  .box.top-ten-rounds {
+    padding: 0;
+    line-height: 16px;
+    font-size: 14px;
+    .rank-icon {
+      padding: 7px 4px 0px;
+    }
+  }
+  .title,
+  .differential {
+    font-size: 1.4rem !important;
+    line-height: 1.5rem !important;
+  }
+  .verdict,
+  .challenge-level {
+    font-size: 1.1rem !important;
+    line-height: 1.2rem !important;
+  }
+  .verdict {
+    margin-top: 4px !important;
+  }
+  .difficulty-title,
+  .subtitle,
+  .course-location {
+    font-size: 0.9rem !important;
+    margin-bottom: 0px !important;
+  }
+  .course-location {
+    text-align: center;
+    .subtitle {
+      margin-bottom: 6px !important;
+    }
+  }
+
+  .course {
+    hr {
+      margin: 0.4rem 0;
+    }
+    .average-rating,
+    .course-difficulty {
+      height: 90px;
+    }
+    .course-tags {
+      margin-top: 4px;
+      margin-bottom: 4px !important;
+    }
+    .course-details {
+      .course-detail {
+        margin-bottom: 0.6rem;
+        .title {
+          font-size: 0.9rem !important;
+        }
+      }
+    }
+    .course-reviews {
+      .review {
+        .content {
+          .title {
+            font-size: 1rem !important;
+          }
+        }
+        .status {
+          padding: 4px 0px;
+        }
+      }
+    }
+    .current-conditions {
+      order: 1;
+    }
+    .new-direct-message-dropdown {
+      min-width: 0px;
+    }
+    .course-description {
+      font-size: 1rem !important;
+      line-height: 1.3 !important;
+    }
+    .hole-layouts {
+      .subtitle {
+        font-size: 0.9rem !important;
+        text-transform: uppercase;
+        margin-bottom: 12px !important;
+      }
+      .layout-name,
+      .total-par,
+      .total-distance {
+        font-size: 1.1rem !important;
+      }
+    }
+  }
+  .set-tags {
+    flex-wrap: wrap;
+  }
+  .enter-address {
+    align-items: flex-end;
+    .text-field {
+      margin-bottom: 12px;
+    }
+  }
+  .hole-fields {
+    width: 25% !important;
   }
 }

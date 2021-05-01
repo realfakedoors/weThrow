@@ -30,7 +30,7 @@ const CourseSearchBar = () => {
         <SubmitButton
           clickFunction={courseSearch}
           color={"is-success"}
-          displayText={"Search Courses"}
+          displayText={"Search"}
         />
         {redirect}
       </form>

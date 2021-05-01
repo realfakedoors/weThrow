@@ -10,7 +10,7 @@ const Dashboard = () => {
   const auth = useAuth();
 
   return (
-    <div className={"box"}>
+    <div className={"box dashboard"}>
       <h1 className={"title is-1 has-text-centered"}>Dashboard</h1>
       {auth.userLoggedIn && (
         <div className={"dashboard-controls"}>

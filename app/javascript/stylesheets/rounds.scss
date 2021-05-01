@@ -30,6 +30,7 @@
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
+      text-align: center;
       margin: 8px;
       border: 2px solid #a6a6a6;
       padding: 24px 16px;
@@ -222,4 +223,113 @@
 .my-rounds {
   max-height: 400px;
   overflow-y: scroll;
+}
+
+@media only screen and (max-width: 815px) {
+  .new-round {
+    overflow: visible;
+    .choose-golfers {
+      .title {
+        margin-top: 0px;
+        margin-bottom: 8px !important;
+      }
+      .golfer {
+        .title {
+          font-size: 1rem !important;
+          margin-bottom: 24px !important;
+        }
+        .subtitle {
+          margin-bottom: 12px !important;
+        }
+      }
+    }
+    .current-card {
+      .currently-selected-golfers {
+        margin-bottom: 40px;
+      }
+    }
+    .continue-button {
+      position: relative;
+      right: auto;
+      margin: 0px auto;
+      display: flex;
+      justify-content: center;
+    }
+    .next-stage-button {
+      margin: 34px auto 0px;
+    }
+    .select-course {
+      .title {
+        margin-top: 8px;
+      }
+      .search-results {
+        padding: 12px 0px;
+      }
+      .hole-layouts {
+        .layout {
+          width: 100%;
+        }
+      }
+    }
+    .recorded-round {
+      .title {
+        margin-top: 16px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .scorecard {
+    position: relative;
+    top: 0;
+  }
+  .recorded-round {
+    transform: rotate(90deg);
+    margin-top: 75px;
+    line-height: 1;
+    min-height: 0px;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow-x: visible;
+    z-index: 100;
+    .title {
+      margin-top: 0px;
+    }
+  }
+  .new-round {
+    min-height: 100vh !important;
+    height: auto;
+    box-shadow: none !important;
+    border-radius: 0px !important;
+    .post-round {
+      .title {
+        margin-top: 8px !important;
+      }
+      .golfer-rounds {
+        padding: 0.2rem !important;
+        .golfer-round {
+          padding: 0.1rem !important;
+          flex-wrap: wrap;
+          .golfer-info {
+            flex-wrap: nowrap;
+          }
+          .differential {
+            margin: 0px;
+          }
+          .choose-to-save-round {
+            margin-top: 8px;
+            margin-left: 4px;
+          }
+        }
+      }
+    }
+    .continue-button {
+      position: relative;
+    }
+    .submit-rounds {
+      position: absolute !important;
+    }
+  }
 }

@@ -66,7 +66,7 @@ const MyFriends = () => {
 
   return (
     <div className={"box my-friends table-container"}>
-      <h2 className={"title is-5 has-text-centered"}>Friends</h2>
+      <h2 className={"title is-5"}>My Friends</h2>
       <table className={"table"}>
         <tbody>
           {newFriendRequests.length > 0 ? (
@@ -97,7 +97,7 @@ const MyFriends = () => {
                 "section-heading subtitle is-7 uppercase has-text-centered"
               }
             >
-              <td colSpan={6}>{"Friends"}</td>
+              <td colSpan={6}>{"Confirmed Friends"}</td>
             </tr>
           ) : null}
           {confirmedFriendships.map((friendship) => {

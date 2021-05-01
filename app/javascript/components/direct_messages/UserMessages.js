@@ -54,7 +54,7 @@ const UserMessages = () => {
     );
   }
 
-  return <div className={"box"}>{displayMessages}</div>;
+  return <div className={"box inbox-container"}>{displayMessages}</div>;
 };
 
 export default UserMessages;

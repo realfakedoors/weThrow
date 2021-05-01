@@ -12,7 +12,7 @@ const AddAFriend = () => {
   const [displayMode, setDisplayMode] = useState("options");
 
   const dashboardLink = (
-    <Link to={"/dashboard"} className={"option-button has-text-centered"}>
+    <Link to={"/dashboard"} className={"option-button button is-warning"}>
       Check your dashboard for friend requests.
     </Link>
   );
@@ -21,13 +21,13 @@ const AddAFriend = () => {
     display = (
       <div className={"options"}>
         <div
-          className={"option-button has-text-centered"}
+          className={"option-button button is-primary"}
           onClick={() => setDisplayMode("search")}
         >
           Search for a weThrow username.
         </div>
         <div
-          className={"option-button has-text-centered"}
+          className={"option-button button is-danger"}
           onClick={() => setDisplayMode("qrcode")}
         >
           Show a friend your QR code.
@@ -58,7 +58,7 @@ const AddAFriend = () => {
 
   return (
     <div className={"box add-a-friend"}>
-      <h1 className={"add-a-friend-title uppercase"}>Add a Friend</h1>
+      <h1 className={"title is-2 has-text-centered"}>Add a Friend</h1>
       {display}
     </div>
   );

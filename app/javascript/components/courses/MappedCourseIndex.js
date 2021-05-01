@@ -51,14 +51,20 @@ const MappedCourseIndex = ({ courses }) => {
     padding: "5px",
   };
 
+  function screenIsMobile() {
+    const width = window.innerWidth;
+    return width <= 815 ? true : false;
+  }
+
   return (
     <LoadScriptNext googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_KEY}>
       <GoogleMap
         zoom={9}
         center={{ lat: 39.7392, lng: -104.9903 }}
-        options={{ mapTypeControl: false }}
-        mapContainerStyle={fullScreenMapStyle}
-        className={"mapped-course-index"}
+        options={{ mapTypeControl: false, fullscreenControl: false }}
+        mapContainerStyle={
+          screenIsMobile() ? { height: `400px` } : fullScreenMapStyle
+        }
       >
         {allMarkers}
         {selectedCourse && (

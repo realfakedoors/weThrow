@@ -35,7 +35,9 @@ const CourseListings = ({ courses, title }) => {
         <h2 className={"title is-3 has-text-centered"}>{title}</h2>
         {listings}
       </div>
-      <MappedCourseIndex courses={courses} />
+      <div className={"mapped-course-index"}>
+        <MappedCourseIndex courses={courses} />
+      </div>
     </div>
   );
 };
