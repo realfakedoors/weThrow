@@ -115,36 +115,49 @@
     padding-bottom: 12px;
     min-width: 60px;
   }
+  .show-score,
+  .total-score {
+    padding: 8px !important;
+    width: 45px;
+    height: 45px;
+    font-size: 24px;
+    font-weight: 1000;
+    text-align: center;
+    vertical-align: middle;
+  }
   .scoreable-hole {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 44px;
     .score {
       height: 44px;
       width: 44px;
+      font-size: 20px;
+      font-weight: 700;
 
       appearance: none;
       background-color: transparent;
       border: none;
       cursor: pointer;
+      text-align: center;
+      vertical-align: middle;
       text-align-last: center;
       -moz-text-align-last: center;
     }
-  }
-  .total-score {
-    text-align: center;
-    vertical-align: middle;
   }
 }
 
 .recorded-round {
   position: relative;
-  min-height: 75vh;
-  overflow-x: scroll;
+  overflow-x: auto;
+  .title {
+    margin-top: 4px;
+  }
   .continue-button {
-    position: -webkit-sticky !important;
-    position: sticky !important;
+    position: -webkit-sticky;
+    position: sticky;
     bottom: 10px;
     left: 10px;
   }
@@ -227,7 +240,6 @@
 
 @media only screen and (max-width: 815px) {
   .new-round {
-    overflow: visible;
     .choose-golfers {
       .title {
         margin-top: 0px;
@@ -280,29 +292,44 @@
 }
 
 @media only screen and (max-width: 400px) {
-  .scorecard {
-    position: relative;
-    top: 0;
-  }
-  .recorded-round {
-    transform: rotate(90deg);
-    margin-top: 75px;
-    line-height: 1;
-    min-height: 0px;
-    position: relative;
-    height: 100%;
-    width: 100%;
-    overflow-x: visible;
-    z-index: 100;
-    .title {
-      margin-top: 0px;
-    }
-  }
   .new-round {
-    min-height: 100vh !important;
-    height: auto;
     box-shadow: none !important;
     border-radius: 0px !important;
+    position: relative;
+    padding: 0px !important;
+    width: 100%;
+    height: 100vw;
+    .recorded-round {
+      position: absolute;
+      max-width: 100vh;
+      height: 100vw;
+      overflow: auto;
+
+      margin-top: 4px;
+      z-index: 100;
+
+      line-height: 1;
+
+      transform: rotate(90deg) translate(0, -100%);
+      transform-origin: top left;
+      .title {
+        margin-right: 0px !important;
+      }
+      .scorecard {
+        position: relative;
+        top: 0;
+      }
+      .continue-button {
+        position: relative;
+        right: 0px;
+        width: 110px;
+
+        left: calc(100% - 110px);
+      }
+    }
+    .next-stage-button {
+      margin: 0px;
+    }
     .post-round {
       .title {
         margin-top: 8px !important;
@@ -324,12 +351,6 @@
           }
         }
       }
-    }
-    .continue-button {
-      position: relative;
-    }
-    .submit-rounds {
-      position: absolute !important;
     }
   }
 }

@@ -235,7 +235,9 @@
 
 .my-courses-table {
   position: relative;
-  min-width: 340px;
+  overflow: hidden !important;
+  overflow-y: auto !important;
+  width: 335px;
   .create-course-button {
     position: absolute;
     top: 12px;
@@ -273,6 +275,8 @@
 }
 
 .top-ten-rounds {
+  padding: 8px 2px !important;
+  text-align: center;
   .rank-icon {
     height: 44px;
     width: 44px;
@@ -345,6 +349,10 @@
     hr {
       margin: 0.4rem 0;
     }
+    .no-ratings-yet {
+      font-size: 1.1rem !important;
+      line-height: 1.2rem !important;
+    }
     .average-rating,
     .course-difficulty {
       height: 90px;
@@ -362,6 +370,15 @@
       }
     }
     .course-reviews {
+      .review-form {
+        .title {
+          font-size: 14px !important;
+          margin-bottom: 8px;
+        }
+        .rating-slider-container {
+          padding-right: 8px;
+        }
+      }
       .review {
         .content {
           .title {

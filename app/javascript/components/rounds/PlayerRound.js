@@ -53,7 +53,7 @@ const PlayerRound = ({ golfer, holes, updateCompletedRounds }) => {
       </td>
       {holes.map((hole, i) => {
         return (
-          <td key={i}>
+          <td key={i} className={"show-score"}>
             <ScoreableHole
               golferId={golfer.id}
               holeId={hole.id}

@@ -5,13 +5,17 @@ import { colorByScore } from "../common/color-by-score";
 const PotentialScores = [...Array(12).keys()].map((score) => score + 1);
 
 const ScoreableHole = ({ golferId, holeId, par, calculateTotals }) => {
-  const [currentStyle, setCurrentStyle] = useState({
+  const [currentColor, setCurrentColor] = useState({
     color: "black",
-    backgroundColor: "transparent",
   });
+  const [backgroundColor, setBackgroundColor] = useState("white");
 
   function updateHole(score) {
-    setCurrentStyle(colorByScore(par, score));
+    let colors = colorByScore(par, score);
+    const newColor = colors.color;
+    const newBackground = colors.backgroundColor;
+    setCurrentColor({ color: newColor });
+    setBackgroundColor(newBackground);
     calculateTotals();
   }
 
@@ -20,9 +24,9 @@ const ScoreableHole = ({ golferId, holeId, par, calculateTotals }) => {
       <select
         id={`score-${holeId}-${golferId}`}
         data-testid={`score-${holeId}-${golferId}`}
-        className={"score"}
+        className={`score has-background-${backgroundColor}`}
         defaultValue={"unscored"}
-        style={currentStyle}
+        style={currentColor}
         onChange={(event) => updateHole(event.target.value)}
       >
         <option value={"unscored"} disabled>

@@ -65,52 +65,51 @@ const Scorecard = ({ golfers, course, setRoundData, setStage }) => {
   }
 
   return (
-    <div>
-      <div className={`recorded-round`}>
-        <h2 className={"title is-2"}>{course.name}</h2>
-        <h2 className={"subtitle is-3"}>{course.layout_name}</h2>
-        <table className={"scorecard table is-bordered is-striped"}>
-          <thead>
-            <tr>
-              <td></td>
-              {course.holes.map((hole) => {
-                return (
-                  <td key={hole.id} className={"hole-info"}>
-                    <div>
-                      <p className={"has-text-centered name is-size-5"}>
-                        {hole.name}
-                      </p>
-                    </div>
-                    <div>
-                      <p className={"has-text-centered distance is-size-7"}>
-                        {hole.distance}
-                      </p>
-                    </div>
-                    <div>
-                      <p className={"has-text-centered"}>{hole.par}</p>
-                    </div>
-                  </td>
-                );
-              })}
-              <th className={"total-col-header"}>Score</th>
-              <th className={"total-col-header"}>Total</th>
-            </tr>
-          </thead>
-          <tbody>{playerRounds}</tbody>
-        </table>
-      </div>
-      <div>
-        {uniqueRounds.length === golfers.length && (
-          <div className={"continue-button submit-rounds"}>
-            <div
-              className={"next-stage-button button is-link"}
-              onClick={() => buildRoundData()}
-            >
-              Submit Rounds
-            </div>
+    <div className={`recorded-round`}>
+      <h2 className={"title is-2"}>{course.name}</h2>
+      <h2 className={"subtitle is-3"}>{course.layout_name}</h2>
+
+      <table className={"scorecard table is-bordered is-striped"}>
+        <thead>
+          <tr>
+            <td></td>
+            {course.holes.map((hole) => {
+              return (
+                <td key={hole.id} className={"hole-info"}>
+                  <div>
+                    <p className={"has-text-centered name is-size-5"}>
+                      {hole.name}
+                    </p>
+                  </div>
+                  <div>
+                    <p className={"has-text-centered distance is-size-7"}>
+                      {hole.distance}
+                    </p>
+                  </div>
+                  <div>
+                    <p className={"has-text-centered"}>{hole.par}</p>
+                  </div>
+                </td>
+              );
+            })}
+            <th className={"total-col-header"}>Score</th>
+            <th className={"total-col-header"}>Total</th>
+          </tr>
+        </thead>
+        <tbody>{playerRounds}</tbody>
+      </table>
+
+      {/*// {uniqueRounds.length === fakeGolfers.length && (*/}
+      {1 === 1 && (
+        <div className={"continue-button submit-rounds"}>
+          <div
+            className={"next-stage-button button is-link is-small"}
+            onClick={() => buildRoundData()}
+          >
+            Submit Rounds
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };

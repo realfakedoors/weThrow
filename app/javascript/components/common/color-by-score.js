@@ -1,29 +1,18 @@
 export const colorByScore = (par, score) => {
+  let color = "white";
+  let backgroundColor = "white";
   const differential = score - par;
   if (differential <= -2) {
-    return {
-      color: "white",
-      backgroundColor: "#6bc7b0",
-    };
+    backgroundColor = "info";
   } else if (differential === -1) {
-    return {
-      color: "white",
-      backgroundColor: "#82c76b",
-    };
+    backgroundColor = "success";
   } else if (differential === 1) {
-    return {
-      color: "white",
-      backgroundColor: "#c7996b",
-    };
+    backgroundColor = "warning";
+    color = "black";
   } else if (differential >= 2) {
-    return {
-      color: "white",
-      backgroundColor: "#c76b6b",
-    };
+    backgroundColor = "danger";
   } else {
-    return {
-      color: "black",
-      backgroundColor: "transparent",
-    };
+    color = "black";
   }
+  return { color, backgroundColor };
 };
