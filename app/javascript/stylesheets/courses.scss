@@ -251,6 +251,10 @@
 }
 
 .review {
+  img.is-rounded {
+    height: 32px;
+    width: 32px;
+  }
   .time {
     margin-left: 4px;
   }

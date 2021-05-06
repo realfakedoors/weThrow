@@ -37,7 +37,7 @@ describe("Disc Golf Course index and search", () => {
     fireEvent.change(screen.getByTestId(/search-courses/), {
       target: { value: "Skeleton Peak" },
     });
-    fireEvent.click(getByText("Search Courses"));
+    fireEvent.click(getByText("Search"));
     await waitFor(() => {
       expect(screen.getByText("1 result found for 'Skeleton Peak'"));
       expect(screen.getByText("Skeleton Peak"));

@@ -1,22 +1,32 @@
 .my-friends {
   .table {
-    min-width: 340px;
+    width: 100%;
   }
   .section-heading {
     background-color: #e6e6e6;
   }
   .new-friend-request {
     background-color: #d1e0d1;
+    td {
+      padding: 2px;
+    }
+    .image {
+      margin: 4px;
+    }
+    .has-text-centered {
+      vertical-align: middle;
+    }
   }
   .sent-friend-request {
     background-color: #e8c9c9;
   }
   .button {
-    margin: 0;
+    margin: 0px;
+    padding: 0px 2px;
   }
   .delete-button {
-    margin-right: 30%;
     margin-top: 14px;
+    margin-left: auto;
   }
 }
 
@@ -24,7 +34,7 @@
   max-width: 600px;
   margin: 32px auto;
   .options {
-    margin: 40px 0;
+    margin: 40px 0px;
 
     display: flex;
     flex-direction: column;

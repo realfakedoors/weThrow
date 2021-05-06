@@ -99,8 +99,7 @@ const Scorecard = ({ golfers, course, setRoundData, setStage }) => {
         <tbody>{playerRounds}</tbody>
       </table>
 
-      {/*// {uniqueRounds.length === fakeGolfers.length && (*/}
-      {1 === 1 && (
+      {uniqueRounds.length === golfers.length && (
         <div className={"continue-button submit-rounds"}>
           <div
             className={"next-stage-button button is-link is-small"}

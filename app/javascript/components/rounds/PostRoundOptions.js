@@ -80,13 +80,17 @@ const PostRoundOptions = ({ golfers, roundData, setRoundData, setStage }) => {
                 <span className={"scorecard"}>
                   {golfer.round.round.recorded_holes_attributes.map(
                     (hole, i) => {
+                      const scoreColors = colorByScore(hole.par, hole.score);
+                      const scoreStyle = {
+                        color: scoreColors.color,
+                      };
                       return (
-                        <span
-                          className={"hole"}
-                          key={i}
-                          style={colorByScore(hole.par, hole.score)}
-                        >
-                          <div className={"score"}>{hole.score}</div>
+                        <span className={"hole"} key={i} style={scoreStyle}>
+                          <div
+                            className={`score has-background-${scoreColors.backgroundColor}`}
+                          >
+                            {hole.score}
+                          </div>
                         </span>
                       );
                     }

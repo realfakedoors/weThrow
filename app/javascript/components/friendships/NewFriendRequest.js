@@ -14,7 +14,7 @@ const NewFriendRequest = ({
       <td>
         <img src={profilePic} className={"image is-32x32"} />
       </td>
-      <td className={"subtitle is-5 has-text-centered"}>{user.username}</td>
+      <td className={"has-text-centered"}>{user.username}</td>
       <td>
         <SubmitButton
           color={"is-success"}
